@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrien Ltd. (NTR) — Investment Analysis | May 2026</title>
+<style>
+  :root {
+    --bg: #0d0f12;
+    --bg2: #141720;
+    --bg3: #1c2030;
+    --bg4: #222840;
+    --border: #2a3050;
+    --text: #d8dde8;
+    --text2: #8a94b0;
+    --text3: #5a6280;
+    --accent: #4a9eff;
+    --accent2: #7b5ea7;
+    --green: #2ecc71;
+    --green-dim: #1a7a44;
+    --green-bg: #0d2b1e;
+    --red: #e74c3c;
+    --red-dim: #8b1c13;
+    --red-bg: #2b0d0d;
+    --yellow: #f39c12;
+    --yellow-bg: #2b1f0d;
+    --mono: 'Courier New', Courier, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* ── HEADER ── */
+  .header { background: linear-gradient(135deg, #0a0c18 0%, #141a2e 50%, #1a1030 100%); border-bottom: 1px solid var(--border); padding: 28px 40px 22px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .header-left h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: #fff; }
+  .header-left h1 span { color: var(--accent); }
+  .header-left .sub { color: var(--text2); font-size: 13px; margin-top: 4px; font-family: var(--mono); }
+  .header-right { text-align: right; }
+  .price-block { font-family: var(--mono); }
+  .price-main { font-size: 32px; font-weight: 700; color: #fff; }
+  .price-meta { color: var(--text2); font-size: 12px; margin-top: 2px; }
+  .rating-badge { display: inline-block; background: var(--green-bg); border: 1px solid var(--green-dim); color: var(--green); padding: 4px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+
+  /* ── VERDICT BANNER ── */
+  .verdict { background: var(--bg2); border-left: 4px solid var(--accent); margin: 0; padding: 20px 40px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; border-bottom: 1px solid var(--border); }
+  .verdict-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); margin-bottom: 4px; }
+  .verdict-item .val { font-family: var(--mono); font-size: 18px; font-weight: 700; color: #fff; }
+  .verdict-item .sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .verdict-item .val.green { color: var(--green); }
+  .verdict-item .val.yellow { color: var(--yellow); }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+  .kpi-card { background: var(--bg2); padding: 14px 16px; }
+  .kpi-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 6px; }
+  .kpi-card .value { font-family: var(--mono); font-size: 17px; font-weight: 700; color: #fff; }
+  .kpi-card .change { font-size: 11px; margin-top: 3px; font-family: var(--mono); }
+  .up { color: var(--green); }
+  .dn { color: var(--red); }
+  .neu { color: var(--text2); }
+
+  /* ── TABS ── */
+  .tab-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; }
+  .tab { padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── TAB PANELS ── */
+  .panel { display: none; padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* ── SECTION HEADERS ── */
+  .section-head { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text3); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .section-head span { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+  h2.sh { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 16px; margin-top: 32px; }
+  h2.sh:first-child { margin-top: 0; }
+
+  /* ── TABLES ── */
+  .tbl-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: 6px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; }
+  thead th { background: var(--bg3); color: var(--text2); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  thead th:first-child { text-align: left; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--bg3); }
+  tbody td { padding: 9px 14px; color: var(--text); text-align: right; white-space: nowrap; }
+  tbody td:first-child { text-align: left; color: var(--text2); }
+  .tfoot td { background: var(--bg3); color: var(--text2); font-weight: 600; border-top: 1px solid var(--border); }
+  .beat { color: var(--green); }
+  .miss { color: var(--red); }
+  .est { color: var(--yellow); font-style: italic; }
+  .highlight-row td { background: rgba(74, 158, 255, 0.06); }
+  .bold td { font-weight: 700; color: #fff !important; }
+  td.bold { font-weight: 700; color: #fff !important; }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+  .card h3 { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── BAR CHARTS ── */
+  .bar-chart { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-label { font-family: var(--mono); font-size: 11px; color: var(--text2); width: 60px; text-align: right; flex-shrink: 0; }
+  .bar-outer { flex: 1; height: 18px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+  .bar-inner { height: 100%; border-radius: 2px; transition: width 0.3s; }
+  .bar-val { font-family: var(--mono); font-size: 11px; color: var(--text); width: 70px; flex-shrink: 0; }
+
+  /* ── DONUT / PIE PLACEHOLDER ── */
+  .donut-wrap { display: flex; align-items: center; gap: 24px; }
+  .donut-legend { flex: 1; }
+  .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-family: var(--mono); font-size: 12px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── RISK/CATALYST GRID ── */
+  .rc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rc-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 0; overflow: hidden; }
+  .rc-header { padding: 14px 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .rc-risks .rc-header { background: rgba(231, 76, 60, 0.12); color: var(--red); border-bottom: 1px solid rgba(231, 76, 60, 0.2); }
+  .rc-cats .rc-header { background: rgba(46, 204, 113, 0.1); color: var(--green); border-bottom: 1px solid rgba(46, 204, 113, 0.2); }
+  .rc-item { padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .rc-item:last-child { border-bottom: none; }
+  .rc-num { font-family: var(--mono); font-size: 11px; color: var(--text3); width: 18px; flex-shrink: 0; margin-top: 1px; }
+  .rc-content .title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .rc-content .detail { font-size: 11px; color: var(--text2); }
+  .sev { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .sev-high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-dim); }
+  .sev-med { background: var(--yellow-bg); color: var(--yellow); border: 1px solid #7a5010; }
+  .sev-low { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+
+  /* ── VALUATION COMPS ── */
+  .val-row-highlight { background: rgba(74, 158, 255, 0.08) !important; }
+  .val-row-highlight td { color: #fff !important; font-weight: 600; }
+
+  /* ── DCF SCENARIOS ── */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .scenario-card { border-radius: 6px; padding: 20px; border: 1px solid; }
+  .scenario-bear { background: rgba(231, 76, 60, 0.06); border-color: rgba(231, 76, 60, 0.25); }
+  .scenario-base { background: rgba(74, 158, 255, 0.06); border-color: rgba(74, 158, 255, 0.25); }
+  .scenario-bull { background: rgba(46, 204, 113, 0.06); border-color: rgba(46, 204, 113, 0.25); }
+  .scenario-card .sc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-weight: 700; }
+  .scenario-bear .sc-label { color: var(--red); }
+  .scenario-base .sc-label { color: var(--accent); }
+  .scenario-bull .sc-label { color: var(--green); }
+  .scenario-card .sc-price { font-family: var(--mono); font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+  .scenario-bear .sc-price { color: var(--red); }
+  .scenario-base .sc-price { color: var(--accent); }
+  .scenario-bull .sc-price { color: var(--green); }
+  .scenario-card .sc-detail { font-size: 12px; color: var(--text2); font-family: var(--mono); }
+  .scenario-card .sc-detail div { margin-bottom: 4px; }
+
+  /* ── RATING SCALE ── */
+  .rating-scale { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .rating-track { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .rating-track div { flex: 1; }
+  .rating-marker { position: relative; }
+  .rating-labels { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--text3); }
+  .rating-pointer { display: flex; justify-content: center; margin-top: -4px; }
+  .investment-thesis { background: var(--bg3); border-radius: 6px; padding: 20px; margin-top: 20px; font-size: 13px; color: var(--text); line-height: 1.8; }
+  .investment-thesis strong { color: #fff; }
+
+  /* ── SENSITIVITY TABLE ── */
+  .sens-cell { font-family: var(--mono); font-size: 12px; }
+  .sens-pos { color: var(--green); }
+  .sens-neg { color: var(--red); }
+  .sens-zero { color: var(--text2); }
+
+  /* ── QUOTES ── */
+  blockquote { border-left: 3px solid var(--accent2); background: var(--bg3); padding: 14px 18px; margin: 0 0 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--text); line-height: 1.7; font-style: italic; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 11px; color: var(--text2); font-style: normal; font-family: var(--mono); }
+
+  /* ── INLINE BADGES ── */
+  .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 3px; font-weight: 700; font-family: var(--mono); vertical-align: middle; }
+  .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-dim); }
+  .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-dim); }
+  .badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid #7a5010; }
+  .badge-blue { background: rgba(74,158,255,0.1); color: var(--accent); border: 1px solid rgba(74,158,255,0.3); }
+
+  /* ── PRICED-IN ITEMS ── */
+  .priced-list { display: flex; flex-direction: column; gap: 12px; }
+  .priced-item { background: var(--bg3); border-radius: 6px; padding: 14px 18px; border-left: 3px solid; display: flex; gap: 16px; align-items: flex-start; }
+  .priced-item.full { border-color: var(--green); }
+  .priced-item.partial { border-color: var(--yellow); }
+  .priced-item.not { border-color: var(--red); }
+  .priced-item .pi-status { font-size: 10px; font-weight: 700; font-family: var(--mono); letter-spacing: 0.5px; width: 90px; flex-shrink: 0; padding-top: 2px; }
+  .priced-item.full .pi-status { color: var(--green); }
+  .priced-item.partial .pi-status { color: var(--yellow); }
+  .priced-item.not .pi-status { color: var(--red); }
+  .priced-item .pi-text .pi-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .priced-item .pi-text .pi-detail { font-size: 12px; color: var(--text2); }
+
+  /* ── WATERFALL ── */
+  .wf-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .wf-label { font-family: var(--mono); font-size: 11px; color: var(--text2); width: 200px; flex-shrink: 0; }
+  .wf-track { flex: 1; height: 22px; position: relative; }
+  .wf-segment { height: 100%; border-radius: 2px; display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; }
+  .wf-val { font-family: var(--mono); font-size: 11px; width: 70px; flex-shrink: 0; }
+  .wf-base { background: var(--bg4); }
+  .wf-pos { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-dim); }
+  .wf-neg { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-dim); }
+  .wf-total { background: rgba(74,158,255,0.15); color: var(--accent); border: 1px solid rgba(74,158,255,0.3); }
+
+  /* ── QUARTERLY ── */
+  .q-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+  .q-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+  .q-card .q-label { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .q-card .q-ebitda { font-family: var(--mono); font-size: 16px; font-weight: 700; color: #fff; }
+  .q-card .q-eps { font-family: var(--mono); font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+  /* ── SENSITIVITY HEATMAP ── */
+  .heat-table td, .heat-table th { text-align: center; padding: 7px 12px; font-family: var(--mono); font-size: 11px; }
+  .heat-table th { background: var(--bg3); color: var(--text2); font-size: 10px; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    .header { padding: 20px; }
+    .panel { padding: 20px; }
+    .verdict { grid-template-columns: 1fr 1fr; }
+    .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+    .grid-2, .grid-3, .grid-4, .scenario-grid, .rc-grid { grid-template-columns: 1fr; }
+    .q-grid { grid-template-columns: repeat(3, 1fr); }
+    .tab-bar { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<div class="header">
+  <div class="header-left">
+    <h1>Nutrien Ltd. <span>NTR</span></h1>
+    <div class="sub">NYSE: NTR · TSX: NTR · Agricultural Inputs — Potash / Nitrogen / Retail · Reporting in USD · IFRS</div>
+    <div class="sub" style="margin-top:4px">Research compiled: May 24, 2026 · Sources: SEC 6-K filings FY2019–FY2025, yfinance, EDGAR</div>
+  </div>
+  <div class="header-right">
+    <div class="price-block">
+      <div class="price-main">$70.13</div>
+      <div class="price-meta">52-wk range $53.03 – $85.36 · Mkt cap $33.7B · Beta 1.10</div>
+      <div class="price-meta">Consensus target $81.40 · 17 Buy / 5 Hold / 2 Sell · 24 analysts</div>
+    </div>
+    <div class="rating-badge">▲ BUY — MODERATE CONVICTION</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ VERDICT ═══════════════════════════════════ -->
+<div class="verdict">
+  <div class="verdict-item">
+    <div class="label">Investment Verdict</div>
+    <div class="val green">BUY</div>
+    <div class="sub">+16% to consensus · 3.1% yield</div>
+  </div>
+  <div class="verdict-item">
+    <div class="label">Valuation (EV/EBITDA)</div>
+    <div class="val yellow">7.3x</div>
+    <div class="sub">vs 5-yr sector median 10.6x; discount persists</div>
+  </div>
+  <div class="verdict-item">
+    <div class="label">Key Upside Driver</div>
+    <div class="val" style="color:var(--accent); font-size:15px">Potash Recovery</div>
+    <div class="sub">$25/t = +$280M EBITDA / +$0.45 EPS</div>
+  </div>
+  <div class="verdict-item">
+    <div class="label">Key Risk</div>
+    <div class="val" style="color:var(--red); font-size:15px">Price Softness</div>
+    <div class="sub">Potash $252/t avg in 2025; market pricing ~$225/t</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ KPI STRIP ═══════════════════════════════════ -->
+<div class="kpi-strip">
+  <div class="kpi-card">
+    <div class="label">FY2025 Revenue</div>
+    <div class="value">$26.9B</div>
+    <div class="change up">↑ +3.5% vs 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">FY2025 Adj EBITDA</div>
+    <div class="value">$6.05B</div>
+    <div class="change up">↑ +13% vs 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">FY2025 Adj EPS</div>
+    <div class="value">$4.56</div>
+    <div class="change up">↑ +31% vs $3.47 (2024)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Gross Margin</div>
+    <div class="value">31.0%</div>
+    <div class="change up">↑ +200bp vs 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">FY2025 FCF (est.)</div>
+    <div class="value">~$2.1B</div>
+    <div class="change up">↑ +52% vs 2024</div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">Net Debt / EBITDA</div>
+    <div class="value">~1.6x</div>
+    <div class="change neu">Investment grade; BBB range</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ TAB BAR ═══════════════════════════════════ -->
+<div class="tab-bar" id="tabBar">
+  <div class="tab active" onclick="showTab('financials')">Financials</div>
+  <div class="tab" onclick="showTab('segments')">Segments & Channels</div>
+  <div class="tab" onclick="showTab('drivers')">Market Drivers</div>
+  <div class="tab" onclick="showTab('guidance')">Guidance & Priced In</div>
+  <div class="tab" onclick="showTab('valuation')">Valuation & DCF</div>
+  <div class="tab" onclick="showTab('riskscat')">Risks & Catalysts</div>
+  <div class="tab" onclick="showTab('rating')">Investment Rating</div>
+  <div class="tab" onclick="showTab('scenarios')" style="color:var(--yellow)">⚡ Scenario Analysis</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 1: FINANCIALS                                                               -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel active" id="tab-financials">
+
+  <div class="section-head">Historical & Forecast Financials <span>USD millions · IFRS · Adj EPS excludes significant items</span></div>
+
+  <!-- INCOME STATEMENT TABLE -->
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Revenue</th>
+          <th>Rev YoY%</th>
+          <th>Gross Margin</th>
+          <th>GM%</th>
+          <th>Adj EBITDA</th>
+          <th>EBITDA Mgn%</th>
+          <th>Net Earnings</th>
+          <th>Diluted EPS</th>
+          <th>Adj EPS</th>
+          <th>FCF (est.)</th>
+          <th>Div/Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2019</td>
+          <td>~19,934</td>
+          <td class="neu">—</td>
+          <td>~5,200</td>
+          <td>~26.0%</td>
+          <td>3,934</td>
+          <td>~19.7%</td>
+          <td>~840</td>
+          <td>~$1.40</td>
+          <td>~$2.40</td>
+          <td>~$1,600</td>
+          <td>$1.84</td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td>20,023</td>
+          <td class="neu">+0.4%</td>
+          <td>5,441</td>
+          <td>27.2%</td>
+          <td>4,025</td>
+          <td>20.1%</td>
+          <td>~530</td>
+          <td>~$0.92</td>
+          <td>~$2.28</td>
+          <td>~$1,600</td>
+          <td>$1.84</td>
+        </tr>
+        <tr>
+          <td>2021</td>
+          <td>27,712</td>
+          <td class="up">+38%</td>
+          <td>~7,100</td>
+          <td>~25.6%</td>
+          <td>7,100</td>
+          <td>25.6%</td>
+          <td>3,200</td>
+          <td>$5.52</td>
+          <td>$6.23</td>
+          <td>~$2,000</td>
+          <td>$1.92</td>
+        </tr>
+        <tr class="highlight-row">
+          <td style="color:#fff;font-weight:700">2022 ⚡</td>
+          <td class="beat">37,884</td>
+          <td class="beat">+37%</td>
+          <td class="beat">~12,500</td>
+          <td class="beat">~33.0%</td>
+          <td class="beat">12,170</td>
+          <td class="beat">32.1%</td>
+          <td class="beat">7,687</td>
+          <td class="beat">$14.18</td>
+          <td class="beat">$13.19</td>
+          <td class="beat">~$5,635</td>
+          <td>$2.12</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>29,056</td>
+          <td class="miss">-23%</td>
+          <td>8,474</td>
+          <td>29.2%</td>
+          <td>6,058</td>
+          <td>20.8%</td>
+          <td>1,282</td>
+          <td>$2.53</td>
+          <td>$4.44</td>
+          <td>~$2,395</td>
+          <td>$2.12</td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>25,972</td>
+          <td class="miss">-11%</td>
+          <td>7,530</td>
+          <td>29.0%</td>
+          <td>5,355</td>
+          <td>20.6%</td>
+          <td>700</td>
+          <td>$1.36</td>
+          <td>$3.47</td>
+          <td>~$1,381</td>
+          <td>$2.18</td>
+        </tr>
+        <tr class="bold">
+          <td>2025A ✓</td>
+          <td class="beat">26,885</td>
+          <td class="beat">+3.5%</td>
+          <td class="beat">8,347</td>
+          <td class="beat">31.0%</td>
+          <td class="beat">6,046</td>
+          <td class="beat">22.5%</td>
+          <td class="beat">2,297</td>
+          <td class="beat">$4.66</td>
+          <td class="beat">$4.56</td>
+          <td class="beat">~$2,100</td>
+          <td>$2.20</td>
+        </tr>
+        <tr>
+          <td class="est">2026E (cons.)</td>
+          <td class="est">~27,500</td>
+          <td class="est">~+2%</td>
+          <td class="est">~8,600</td>
+          <td class="est">~31%</td>
+          <td class="est">~6,300</td>
+          <td class="est">~22.9%</td>
+          <td class="est">~2,600</td>
+          <td class="est">~$5.00</td>
+          <td class="est">~$5.50–6.50</td>
+          <td class="est">~$2,300</td>
+          <td class="est">$2.20</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px; color:var(--text3); margin-top:-16px; margin-bottom:24px;">
+    <span class="beat">■</span> Beat / strong year &nbsp;
+    <span class="miss">■</span> Decline / miss &nbsp;
+    <span class="est">■</span> Estimate / forecast &nbsp;
+    2022 was the supercycle peak driven by Belarus sanctions + Russia-Ukraine war. 2019–2020 estimates based on guidance/comparisons. 2026E based on guidance midpoints + consensus.
+  </div>
+
+  <!-- SEGMENT EBITDA WATERFALL -->
+  <h2 class="sh">Adj EBITDA by Segment (FY2022–2025)</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>FY2022</th>
+          <th>FY2023</th>
+          <th>Δ '22→'23</th>
+          <th>FY2024</th>
+          <th>Δ '23→'24</th>
+          <th>FY2025</th>
+          <th>Δ '24→'25</th>
+          <th>% of 2025 Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Retail</td>
+          <td>2,293</td>
+          <td>1,459</td>
+          <td class="miss">-36%</td>
+          <td>1,696</td>
+          <td class="up">+16%</td>
+          <td>1,736</td>
+          <td class="up">+2%</td>
+          <td>29%</td>
+        </tr>
+        <tr>
+          <td>Potash</td>
+          <td class="beat">5,769</td>
+          <td>2,404</td>
+          <td class="miss">-58%</td>
+          <td>1,848</td>
+          <td class="miss">-23%</td>
+          <td class="beat">2,254</td>
+          <td class="beat">+22%</td>
+          <td>37%</td>
+        </tr>
+        <tr>
+          <td>Nitrogen</td>
+          <td class="beat">3,931</td>
+          <td>1,930</td>
+          <td class="miss">-51%</td>
+          <td>1,880</td>
+          <td class="miss">-3%</td>
+          <td class="beat">2,147</td>
+          <td class="beat">+14%</td>
+          <td>36%</td>
+        </tr>
+        <tr>
+          <td>Phosphate</td>
+          <td>594</td>
+          <td>470</td>
+          <td class="miss">-21%</td>
+          <td>384</td>
+          <td class="miss">-18%</td>
+          <td>382</td>
+          <td class="neu">-1%</td>
+          <td>6%</td>
+        </tr>
+        <tr>
+          <td>Corp / Eliminations</td>
+          <td>~(417)</td>
+          <td>(205)</td>
+          <td class="up">NM</td>
+          <td>(453)</td>
+          <td class="miss">NM</td>
+          <td>(473)</td>
+          <td class="miss">NM</td>
+          <td>—</td>
+        </tr>
+        <tr class="bold">
+          <td>Total Adj EBITDA</td>
+          <td class="beat">12,170</td>
+          <td>6,058</td>
+          <td class="miss">-50%</td>
+          <td>5,355</td>
+          <td class="miss">-12%</td>
+          <td class="beat">6,046</td>
+          <td class="beat">+13%</td>
+          <td>100%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CASH FLOW TABLE -->
+  <h2 class="sh">Cash Flow & Capital Allocation (USD millions)</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>CFO</th>
+          <th>CapEx</th>
+          <th>FCF (approx.)</th>
+          <th>FCF Yield</th>
+          <th>Dividends Paid</th>
+          <th>Buybacks</th>
+          <th>Total Shareholder Return</th>
+          <th>Dividend/Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2020</td><td>~3,100</td><td>~1,500</td><td>~1,600</td><td>~3.5%</td><td>~750</td><td>~600</td><td>~1,350</td><td>$1.84</td>
+        </tr>
+        <tr>
+          <td>2021</td><td>3,900</td><td>1,900</td><td>~2,000</td><td>~3.7%</td><td>~800</td><td>~1,300</td><td>~2,100</td><td>$1.92</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>2022</td><td class="beat">8,110</td><td>2,475</td><td class="beat">~5,635</td><td class="beat">~9.3%</td><td>~900</td><td class="beat">~4,700</td><td class="beat">~5,600</td><td>$2.12</td>
+        </tr>
+        <tr>
+          <td>2023</td><td>5,066</td><td>2,671</td><td>~2,395</td><td>~4.0%</td><td>~1,050</td><td>~1,050</td><td>~2,100</td><td>$2.12</td>
+        </tr>
+        <tr>
+          <td>2024</td><td>3,535</td><td>2,154</td><td>~1,381</td><td>~2.3%</td><td>~1,050</td><td>~190</td><td>~1,240</td><td>$2.18</td>
+        </tr>
+        <tr class="bold">
+          <td>2025A</td><td class="beat">~4,100</td><td>2,000</td><td class="beat">~2,100</td><td class="beat">~6.2%</td><td>~1,050</td><td>~551</td><td class="beat">~1,600</td><td>$2.20</td>
+        </tr>
+        <tr>
+          <td class="est">2026E</td><td class="est">~4,300</td><td class="est">~2,050</td><td class="est">~2,300</td><td class="est">~6.8%</td><td class="est">~1,050</td><td class="est">~700</td><td class="est">~1,750</td><td class="est">$2.20</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EPS & DIVIDEND TRACK -->
+  <h2 class="sh">EPS & Dividend Track</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Adjusted EPS vs GAAP Diluted EPS</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">2019</div><div class="bar-outer"><div class="bar-inner" style="width:18%; background:#4a9eff"></div></div><div class="bar-val">Adj $2.40</div></div>
+        <div class="bar-row"><div class="bar-label">2020</div><div class="bar-outer"><div class="bar-inner" style="width:17%; background:#4a9eff"></div></div><div class="bar-val">Adj $2.28</div></div>
+        <div class="bar-row"><div class="bar-label">2021</div><div class="bar-outer"><div class="bar-inner" style="width:47%; background:#4a9eff"></div></div><div class="bar-val">Adj $6.23</div></div>
+        <div class="bar-row"><div class="bar-label">2022</div><div class="bar-outer"><div class="bar-inner" style="width:100%; background:#2ecc71"></div></div><div class="bar-val">Adj $13.19</div></div>
+        <div class="bar-row"><div class="bar-label">2023</div><div class="bar-outer"><div class="bar-inner" style="width:34%; background:#f39c12"></div></div><div class="bar-val">Adj $4.44</div></div>
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-outer"><div class="bar-inner" style="width:26%; background:#e67e22"></div></div><div class="bar-val">Adj $3.47</div></div>
+        <div class="bar-row"><div class="bar-label">2025A</div><div class="bar-outer"><div class="bar-inner" style="width:35%; background:#2ecc71"></div></div><div class="bar-val">Adj $4.56</div></div>
+        <div class="bar-row"><div class="bar-label">2026E</div><div class="bar-outer"><div class="bar-inner" style="width:46%; background:#4a9eff; opacity:0.6"></div></div><div class="bar-val est">~$6.00</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Adj EBITDA Trend (USD billions)</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">2019</div><div class="bar-outer"><div class="bar-inner" style="width:32%; background:#4a9eff"></div></div><div class="bar-val">$3.93B</div></div>
+        <div class="bar-row"><div class="bar-label">2020</div><div class="bar-outer"><div class="bar-inner" style="width:33%; background:#4a9eff"></div></div><div class="bar-val">$4.03B</div></div>
+        <div class="bar-row"><div class="bar-label">2021</div><div class="bar-outer"><div class="bar-inner" style="width:58%; background:#4a9eff"></div></div><div class="bar-val">$7.10B</div></div>
+        <div class="bar-row"><div class="bar-label">2022</div><div class="bar-outer"><div class="bar-inner" style="width:100%; background:#2ecc71"></div></div><div class="bar-val">$12.17B</div></div>
+        <div class="bar-row"><div class="bar-label">2023</div><div class="bar-outer"><div class="bar-inner" style="width:50%; background:#f39c12"></div></div><div class="bar-val">$6.06B</div></div>
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-outer"><div class="bar-inner" style="width:44%; background:#e67e22"></div></div><div class="bar-val">$5.36B</div></div>
+        <div class="bar-row"><div class="bar-label">2025A</div><div class="bar-outer"><div class="bar-inner" style="width:50%; background:#2ecc71"></div></div><div class="bar-val">$6.05B</div></div>
+        <div class="bar-row"><div class="bar-label">2026E</div><div class="bar-outer"><div class="bar-inner" style="width:52%; background:#4a9eff; opacity:0.6"></div></div><div class="bar-val est">~$6.30B</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUARTERLY CADENCE -->
+  <h2 class="sh">Quarterly Cadence — Recent 6 Quarters</h2>
+  <div class="q-grid">
+    <div class="q-card">
+      <div class="q-label">Q4 2024</div>
+      <div class="q-ebitda">$1.06B</div>
+      <div class="q-eps">EPS $0.23 | Adj $0.31</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Weak potash price/vol</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Q1 2025</div>
+      <div class="q-ebitda">~$0.90B</div>
+      <div class="q-eps">EPS $0.02 | Adj $0.11</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Seasonally weakest</div>
+    </div>
+    <div class="q-card" style="border-color:rgba(46,204,113,0.3)">
+      <div class="q-label">Q2 2025</div>
+      <div class="q-ebitda" style="color:var(--green)">~$2.50B</div>
+      <div class="q-eps">EPS $2.50 | Adj $2.65</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Peak planting season</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Q3 2025</div>
+      <div class="q-ebitda">$1.43B</div>
+      <div class="q-eps">EPS $0.96 | Adj $0.97</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Record ammonia 94%</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Q4 2025</div>
+      <div class="q-ebitda">$1.28B</div>
+      <div class="q-eps">EPS $1.18 | Adj $0.83</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Profertil gain $0.50</div>
+    </div>
+    <div class="q-card" style="border-color:rgba(74,158,255,0.3)">
+      <div class="q-label">Q1 2026</div>
+      <div class="q-ebitda" style="color:var(--accent)">$1.11B</div>
+      <div class="q-eps">EPS $0.27 | Guidance confirmed</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">Record potash vol</div>
+    </div>
+  </div>
+
+</div><!-- /tab-financials -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 2: SEGMENTS & CHANNELS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-segments">
+
+  <div class="section-head">Segment Deep-Dive & Channel Mix — FY2025 Actuals <span>USD millions</span></div>
+
+  <!-- SEGMENT OVERVIEW CARDS -->
+  <div class="grid-4" style="margin-bottom:28px">
+    <div class="card" style="border-top:3px solid #4a9eff">
+      <h3 style="color:#4a9eff">Retail</h3>
+      <div style="font-family:var(--mono); font-size:20px; font-weight:700; color:#fff">$1,736M</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Adj EBITDA · +2% YoY</div>
+      <div style="font-family:var(--mono); font-size:12px; color:var(--text2); margin-top:8px;">Rev $17,620M · GM 26.1%</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">~2,000+ locations globally</div>
+    </div>
+    <div class="card" style="border-top:3px solid #2ecc71">
+      <h3 style="color:#2ecc71">Potash</h3>
+      <div style="font-family:var(--mono); font-size:20px; font-weight:700; color:var(--green)">$2,254M</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Adj EBITDA · +22% YoY</div>
+      <div style="font-family:var(--mono); font-size:12px; color:var(--text2); margin-top:8px;">Rev $3,593M · GM 56%</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">14.25Mt sold · $252/t avg</div>
+    </div>
+    <div class="card" style="border-top:3px solid #e67e22">
+      <h3 style="color:#e67e22">Nitrogen</h3>
+      <div style="font-family:var(--mono); font-size:20px; font-weight:700; color:#e67e22">$2,147M</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Adj EBITDA · +14% YoY</div>
+      <div style="font-family:var(--mono); font-size:12px; color:var(--text2); margin-top:8px;">Rev $4,187M · GM 38%</div>
+      <div style="font-size:11px; color:var(--text3); margin-top:4px;">92% ammonia rate · $365/t</div>
+    </div>
+    <div class="card" style="border-top:3px solid #8e44ad">
+      <h3 style="color:#8e44ad">Phosphate</h3>
+      <div style="font-family:var(--mono); font-size:20px; font-weight:700; color:#8e44ad">$382M</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Adj EBITDA · -1% YoY</div>
+      <div style="font-family:var(--mono); font-size:12px; color:var(--text2); margin-top:8px;">Rev $1,734M · GM 8.3%</div>
+      <div style="font-size:11px; color:var(--red); margin-top:4px;">⚠ Strategic review underway</div>
+    </div>
+  </div>
+
+  <!-- RETAIL CHANNEL MIX -->
+  <div class="grid-2">
+    <div>
+      <h2 class="sh">Retail Channel Mix — FY2025</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Product Line</th><th>Sales</th><th>Sales %</th><th>Gross Margin</th><th>GM%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Crop Nutrients</td><td>7,285</td><td>41.3%</td><td>1,424</td><td>19.5%</td></tr>
+            <tr><td>Crop Protection</td><td>6,105</td><td>34.7%</td><td>1,590</td><td>26.0%</td></tr>
+            <tr><td>Seed</td><td>2,128</td><td>12.1%</td><td>408</td><td>19.2%</td></tr>
+            <tr><td>Services &amp; Other</td><td>944</td><td>5.4%</td><td>750</td><td>79.4%</td></tr>
+            <tr><td>Merchandise</td><td>875</td><td>5.0%</td><td>148</td><td>16.9%</td></tr>
+            <tr><td>Nutrien Financial (net)</td><td>376</td><td>2.1%</td><td>376</td><td>100%</td></tr>
+            <tr class="bold"><td>Total</td><td>17,620</td><td>100%</td><td>4,603</td><td>26.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h2 class="sh">Proprietary Products Premium (FY2025)</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Line</th><th>Prop. GM</th><th>% of Line GM</th><th>2024 Prop. GM</th><th>Δ YoY</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Crop Nutrients</td><td>450</td><td>32%</td><td>421</td><td class="up">+7%</td></tr>
+            <tr><td>Crop Protection</td><td>503</td><td>32%</td><td>470</td><td class="up">+7%</td></tr>
+            <tr><td>Seed</td><td>137</td><td>34%</td><td>154</td><td class="miss">-11%</td></tr>
+            <tr><td>Merchandise</td><td>14</td><td>9%</td><td>15</td><td class="miss">-7%</td></tr>
+            <tr class="bold"><td>Total</td><td>1,104</td><td>24%</td><td>1,060</td><td class="up">+4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:11px; color:var(--text2); padding:12px 0">Proprietary products (Loveland, Helios, ESN-branded, own-label seed) command higher margins and growing share. Target: expand from 24% → 30%+ of product gross margin. <span class="badge badge-green">KEY UPSIDE LEVER</span></div>
+    </div>
+  </div>
+
+  <!-- POTASH VOLUMES & PRICING -->
+  <h2 class="sh">Potash: Volume & Pricing Detail</h2>
+  <div class="grid-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Region</th><th>FY2025 Vol (kt)</th><th>FY2024 Vol (kt)</th><th>FY2025 Price/t</th><th>FY2024 Price/t</th><th>Price Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>North America</td><td>4,638</td><td>4,672</td><td>$286</td><td>$285</td><td class="neu">+$1</td></tr>
+          <tr><td>Offshore (Canpotex)</td><td class="beat">9,615</td><td>9,214</td><td class="beat">$235</td><td class="miss">$180</td><td class="beat">+$55</td></tr>
+          <tr class="bold"><td>Total</td><td>14,253</td><td>13,886</td><td>$252</td><td>$215</td><td class="beat">+$37</td></tr>
+          <tr><td style="padding-left:16px; color:var(--text3)">COGS/t</td><td colspan="4"></td><td>$111</td></tr>
+          <tr><td style="padding-left:16px; color:var(--text3)">Gross Margin/t</td><td colspan="4"></td><td class="beat">$141</td></tr>
+          <tr><td style="padding-left:16px; color:var(--text3)">Controllable Cash Cost/t</td><td colspan="4"></td><td>$58</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Canpotex Offshore Market Mix (2025)</h3>
+      <div class="bar-chart" style="margin-top:8px">
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">Latin America</div><div class="bar-outer"><div class="bar-inner" style="width:39%; background:#4a9eff"></div></div><div class="bar-val">39%</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">Other Asia</div><div class="bar-outer"><div class="bar-inner" style="width:29%; background:#2ecc71"></div></div><div class="bar-val">29%</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">China</div><div class="bar-outer"><div class="bar-inner" style="width:11%; background:#e67e22"></div></div><div class="bar-val">11%</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">India</div><div class="bar-outer"><div class="bar-inner" style="width:6%; background:#f39c12"></div></div><div class="bar-val">6%</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">Other</div><div class="bar-outer"><div class="bar-inner" style="width:15%; background:#8e44ad"></div></div><div class="bar-val">15%</div></div>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:14px;">Record offshore volumes of 9,615kt in 2025. Offshore pricing +$55/t (+31%) driven by strong LatAm (soy cycle) and tight Asian markets. 49% of ore tonnage now using automation (+14pp YoY).</div>
+    </div>
+  </div>
+
+  <!-- NITROGEN DETAIL -->
+  <h2 class="sh">Nitrogen: Product Mix & Operational Metrics</h2>
+  <div class="grid-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Product</th><th>FY2025 Vol (kt)</th><th>FY2025 $/t</th><th>FY2024 Vol (kt)</th><th>FY2024 $/t</th><th>Price Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ammonia</td><td>2,420</td><td>$422</td><td>2,483</td><td>$410</td><td class="up">+$12</td></tr>
+          <tr><td>Urea &amp; ESN</td><td>3,099</td><td class="beat">$490</td><td>3,188</td><td>$421</td><td class="beat">+$69</td></tr>
+          <tr><td>SNS (Solns/Nit./Sulf.)</td><td>5,369</td><td class="beat">$268</td><td>5,023</td><td>$221</td><td class="beat">+$47</td></tr>
+          <tr class="bold"><td>Total</td><td>10,888</td><td>$365</td><td>10,694</td><td>$324</td><td class="beat">+$41</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Nitrogen End Market Split (FY2025)</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">Fertilizer</div><div class="bar-outer"><div class="bar-inner" style="width:59%; background:#e67e22"></div></div><div class="bar-val">6,425kt (59%)</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:120px;text-align:left">Industrial/Feed</div><div class="bar-outer"><div class="bar-inner" style="width:41%; background:#95a5a6"></div></div><div class="bar-val">4,463kt (41%)</div></div>
+      </div>
+      <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:10px">
+        <div style="background:var(--bg3); padding:10px; border-radius:4px; font-family:var(--mono); font-size:12px;">
+          <div style="color:var(--text3); font-size:10px;">Ammonia Op. Rate</div>
+          <div style="font-size:18px; font-weight:700; color:var(--green)">92%</div>
+          <div style="font-size:10px; color:var(--text2)">vs 88% in 2024 (+4pp)</div>
+        </div>
+        <div style="background:var(--bg3); padding:10px; border-radius:4px; font-family:var(--mono); font-size:12px;">
+          <div style="color:var(--text3); font-size:10px;">Nat. Gas Cost</div>
+          <div style="font-size:18px; font-weight:700; color:var(--accent)">$3.53</div>
+          <div style="font-size:10px; color:var(--text2)">/MMBtu (incl. deriv.)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOSPHATE -->
+  <h2 class="sh">Phosphate — Under Strategic Review</h2>
+  <div class="grid-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>FY2025</th><th>FY2024</th><th>YoY Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Net Sales</td><td>1,734</td><td>1,657</td><td class="up">+5%</td></tr>
+          <tr><td>Gross Margin</td><td>144</td><td>147</td><td class="miss">-2%</td></tr>
+          <tr><td>GM%</td><td>8.3%</td><td>8.9%</td><td class="miss">-60bp</td></tr>
+          <tr><td>Adj EBITDA</td><td>382</td><td>384</td><td class="neu">flat</td></tr>
+          <tr><td>Total Volumes (kt)</td><td>2,363</td><td>—</td><td>—</td></tr>
+          <tr><td>Avg Selling Price/t</td><td>$725</td><td>—</td><td>—</td></tr>
+          <tr><td>COGS/t</td><td>$657</td><td>—</td><td>—</td></tr>
+          <tr><td>P₂O₅ Operating Rate</td><td>80%</td><td>78%</td><td class="up">+2pp</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="border-color:rgba(231,76,60,0.3)">
+      <h3 style="color:var(--red)">Strategic Review Status</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:10px;">⚠ <strong>Initiated November 2025.</strong> Decision expected 2026.</div>
+        <div style="margin-bottom:8px;">Options under review:</div>
+        <div style="padding-left:14px; margin-bottom:6px; color:var(--text2);">• Reconfigure operations (cost reduction)</div>
+        <div style="padding-left:14px; margin-bottom:6px; color:var(--text2);">• Strategic partnership / JV</div>
+        <div style="padding-left:14px; margin-bottom:6px; color:var(--text2);">• Full or partial sale (White Springs, FL)</div>
+        <div style="margin-top:12px; padding:10px; background:var(--bg3); border-radius:4px; font-size:12px; color:var(--text2);">
+          A sale at book value could generate <strong style="color:#fff;">$1–2B</strong> in proceeds (est.), eliminate ~6% of EBITDA, and remove ~$0.5B in CapEx obligations. This is <span class="badge badge-green">NOT YET PRICED IN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-segments -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 3: MARKET DRIVERS                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-drivers">
+
+  <div class="section-head">Key End Market Drivers & Macro Context</div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>🌽 Agriculture Fundamentals</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>US corn acres:</strong> 94–96M expected 2026 (vs 91–93M in 2025). Each 1M acres ≈ 500kt NA potash demand.</div>
+        <div style="margin-bottom:8px;"><strong>Brazil:</strong> Record soybean production cycle; safrinha corn growing. Just-in-time purchasing behavior from growers limits channel inventory.</div>
+        <div style="margin-bottom:8px;"><strong>Global grain S/D:</strong> Stocks-to-use ratios near historical averages post-2025 bumper crop → soil replenishment demand supportive for 2026.</div>
+        <div style="color:var(--green); font-size:12px;">▲ Net positive for crop input volumes</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>⛏ Potash Market Dynamics</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>Global shipments:</strong> 70Mt (2023) → 72.5Mt (2024) → 74.5Mt (2025) → 74–77Mt (2026E). 4th consecutive year of growth.</div>
+        <div style="margin-bottom:8px;"><strong>NTR capacity:</strong> ~20M+ tonne nameplate; ~70% utilization. World's largest producer.</div>
+        <div style="margin-bottom:8px;"><strong>Price benchmarks:</strong> Brazil CFR MOP $355–360/t (Q4'25 arrivals, up from $280/t low). SE Asia spot ~$390/t.</div>
+        <div style="margin-bottom:8px;"><strong>Canpotex:</strong> NTR + Mosaic control ~35–40% of seaborne trade.</div>
+        <div style="color:var(--green); font-size:12px;">▲ 4th year of demand growth, limited new supply</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🏭 Nitrogen Market Dynamics</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>Chinese exports:</strong> Ongoing restrictions limiting global urea supply — supports prices.</div>
+        <div style="margin-bottom:8px;"><strong>Russia sanctions:</strong> Limiting European/Black Sea ammonia supply availability.</div>
+        <div style="margin-bottom:8px;"><strong>NTR cost advantage:</strong> Henry Hub ~$3.5/MMBtu vs European TTF significantly higher. North American N producers structurally more competitive.</div>
+        <div style="margin-bottom:8px;"><strong>2% global N demand growth</strong> expected to continue through 2026.</div>
+        <div style="color:var(--green); font-size:12px;">▲ Supply constraints + NA cost edge = supportive</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🇮🇳🇨🇳 India & China Contract Calendar</h3>
+      <div class="tbl-wrap" style="margin:0">
+        <table>
+          <thead><tr><th>Region</th><th>Timing</th><th>Impact</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>China MOP Contract</td><td>Q1–Q2</td><td>Sets benchmark</td><td class="badge badge-yellow">2026 pending</td></tr>
+            <tr><td>India MOP Contract</td><td>Q2–Q3</td><td>~2–3Mt/yr</td><td class="badge badge-yellow">2026 pending</td></tr>
+            <tr><td>Brazil spot</td><td>Continuous</td><td>Largest market</td><td class="badge badge-green">$355-360/t CFR</td></tr>
+            <tr><td>SE Asia spot</td><td>Continuous</td><td>Price discovery</td><td class="badge badge-green">~$390/t</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:10px;">China/India annual contract signings are the key market-moving events for potash pricing. Tight inventory entering 2026 supports favorable outcomes for sellers.</div>
+    </div>
+    <div class="card">
+      <h3>⚠ Supply-Side Risks</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:10px; padding:8px 12px; background:var(--red-bg); border-radius:4px; font-size:12px;"><strong style="color:var(--red)">Belarus/Russia:</strong> Belaruskali + EuroChem: sanctions could ease, unlocking suppressed supply. This is the primary potash bear case.</div>
+        <div style="margin-bottom:10px; padding:8px 12px; background:var(--yellow-bg); border-radius:4px; font-size:12px;"><strong style="color:var(--yellow)">China N exports:</strong> Removal of urea export restrictions would ease global N pricing pressure materially.</div>
+        <div style="padding:8px 12px; background:var(--bg3); border-radius:4px; font-size:12px; color:var(--text2);">New African/greenfield potash projects (e.g., Sintoukola) remain long-dated; near-term supply not a concern per NTR management.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <h3>CEO on Market Outlook — Key Quotes</h3>
+    <blockquote>
+      "We anticipate relatively tight fundamentals throughout 2026, as trend line demand growth is testing existing global operating and supply chain capabilities."
+      <cite>— Ken Seitz, CEO · February 18, 2026 (FY2025 Results)</cite>
+    </blockquote>
+    <blockquote>
+      "2025 was a defining year for our Company, with exceptional performance across all our operating segments and a reduction in cost and capital expenditures that surpassed our targets."
+      <cite>— Ken Seitz, CEO · February 18, 2026</cite>
+    </blockquote>
+    <blockquote>
+      "Nutrien delivered structural earnings growth in the first nine months of 2025 through record upstream fertilizer sales volumes, improved reliability and higher Retail earnings."
+      <cite>— Ken Seitz, CEO · November 5, 2025 (Q3 2025 Results)</cite>
+    </blockquote>
+  </div>
+
+</div><!-- /tab-drivers -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 4: GUIDANCE & PRICED IN                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-guidance">
+
+  <div class="section-head">2026 Guidance & What the Market Has Priced In <span>Guidance confirmed May 6, 2026 at Q1 2026 release</span></div>
+
+  <!-- GUIDANCE TABLE -->
+  <h2 class="sh">2026 Full-Year Guidance (February 18, 2026)</h2>
+  <div class="tbl-wrap" style="max-width:800px">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>2026 Low</th><th>2026 Midpoint</th><th>2026 High</th><th>2025 Actual</th><th>Δ (mid vs actual)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Retail Adj EBITDA ($B)</td><td>1.75</td><td>1.85</td><td>1.95</td><td>1.74</td><td class="up">+6%</td></tr>
+        <tr><td>Potash Sales Volumes (Mt)</td><td>14.1</td><td>14.45</td><td>14.8</td><td>14.25</td><td class="up">+1%</td></tr>
+        <tr><td>Nitrogen Sales Volumes (Mt) ¹</td><td>9.2</td><td>9.45</td><td>9.7</td><td>10.89</td><td class="miss">-13%</td></tr>
+        <tr><td>Phosphate Sales Volumes (Mt)</td><td>2.4</td><td>2.5</td><td>2.6</td><td>2.36</td><td class="up">+6%</td></tr>
+        <tr><td>D&amp;A ($B)</td><td>2.4</td><td>2.45</td><td>2.5</td><td>2.37</td><td class="up">+3%</td></tr>
+        <tr><td>Finance Costs ($B)</td><td>0.65</td><td>0.70</td><td>0.75</td><td>0.69</td><td class="neu">flat</td></tr>
+        <tr><td>Tax Rate on Adj EPS (%)</td><td>24.0</td><td>25.0</td><td>26.0</td><td>24.9</td><td class="neu">~flat</td></tr>
+        <tr><td>Total CapEx ($B)</td><td>2.0</td><td>2.05</td><td>2.1</td><td>2.0</td><td class="neu">flat</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px; color:var(--text3); margin-top:-16px; margin-bottom:24px;">¹ Nitrogen volumes lower due to Trinidad facility shutdown + New Madrid cessation (~1.6Mt removed). Margin-accretive portfolio action.</div>
+
+  <!-- PRICE SENSITIVITIES -->
+  <h2 class="sh">2026 Price Sensitivity Analysis</h2>
+  <div class="grid-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Factor</th><th>Δ Adj EBITDA</th><th>Δ Adj EPS</th><th>% EPS Impact</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$25/t Potash net selling price</td>
+            <td class="beat sens-pos">± $280M</td>
+            <td class="beat sens-pos">± $0.45</td>
+            <td class="beat">± ~8%</td>
+          </tr>
+          <tr>
+            <td>$25/t SNS net selling price</td>
+            <td class="beat sens-pos">± $135M</td>
+            <td class="beat sens-pos">± $0.20</td>
+            <td class="beat">± ~4%</td>
+          </tr>
+          <tr>
+            <td>$25/t Urea/ESN net selling price</td>
+            <td class="beat sens-pos">± $65M</td>
+            <td class="beat sens-pos">± $0.10</td>
+            <td class="beat">± ~2%</td>
+          </tr>
+          <tr>
+            <td>$1/MMBtu NYMEX Natural Gas</td>
+            <td class="miss sens-neg">± $180M</td>
+            <td class="miss sens-neg">± $0.30</td>
+            <td class="miss">± ~5%</td>
+          </tr>
+          <tr>
+            <td>$25/t Ammonia net selling price</td>
+            <td class="beat sens-pos">± $35M</td>
+            <td class="beat sens-pos">± $0.05</td>
+            <td>± ~1%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Potash Price: Path to $6.00+ EPS</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7; margin-bottom:16px;">At 2025's avg $252/t and 2026E mid guidance:</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label" style="width:80px">$220/t</div><div class="bar-outer"><div class="bar-inner" style="width:55%; background:#e74c3c"></div></div><div class="bar-val miss">~$4.50 EPS</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:80px">$252/t</div><div class="bar-outer"><div class="bar-inner" style="width:66%; background:#f39c12"></div></div><div class="bar-val" style="color:#f39c12">~$5.50 EPS</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:80px">$275/t</div><div class="bar-outer"><div class="bar-inner" style="width:78%; background:#2ecc71"></div></div><div class="bar-val beat">~$6.50 EPS</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:80px">$300/t</div><div class="bar-outer"><div class="bar-inner" style="width:92%; background:#27ae60"></div></div><div class="bar-val beat">~$7.50 EPS</div></div>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:12px;">Each $25/t potash price increase adds ~$0.45 to adj EPS. A recovery to 2021-level pricing ($300–320/t) would be transformative for earnings.</div>
+    </div>
+  </div>
+
+  <!-- WHAT IS PRICED IN -->
+  <h2 class="sh">What Is Priced In at $70.13?</h2>
+  <div class="priced-list">
+    <div class="priced-item full">
+      <div class="pi-status">FULLY PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Retail Recovery ($1.75–1.95B EBITDA guidance)</div>
+        <div class="pi-detail">Market well understands the structural improvement. Proprietary products growth + Nutrien Financial expansion are baked in. No surprise factor remaining.</div>
+      </div>
+    </div>
+    <div class="priced-item partial">
+      <div class="pi-status">PARTIALLY PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Nitrogen Margin Improvement</div>
+        <div class="pi-detail">Trinidad/New Madrid exits improve margins but lower volumes (-13% vs 2025A). Market pricing in roughly neutral net impact. Upside if ammonia rates sustain 92%+ and prices hold.</div>
+      </div>
+    </div>
+    <div class="priced-item partial">
+      <div class="pi-status">PARTIALLY PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Potash Volume Growth (14.1–14.8Mt guidance)</div>
+        <div class="pi-detail">Record 2025 volumes ($14.25Mt) and 2026 guidance broadly in line → priced. But <em>price</em> recovery is NOT priced. At $70.13, market implies ~$220–230/t avg NTR net selling price for 2026.</div>
+      </div>
+    </div>
+    <div class="priced-item partial">
+      <div class="pi-status">PARTIALLY PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Share Buyback (NCIB up to 5% of shares)</div>
+        <div class="pi-detail">~$1.7B authorization at $70/share. Partial execution expected; full execution would be ~5% EPS accretion. Market prices in moderate buyback pace.</div>
+      </div>
+    </div>
+    <div class="priced-item not">
+      <div class="pi-status">NOT PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Phosphate Strategic Outcome</div>
+        <div class="pi-detail">Decision expected 2026. A sale/restructuring could generate $1–2B+ proceeds and eliminate a drag segment. This is a free call option at current prices — upside surprise scenario.</div>
+      </div>
+    </div>
+    <div class="priced-item not">
+      <div class="pi-status">NOT PRICED</div>
+      <div class="pi-text">
+        <div class="pi-title">Potash Price Recovery to $270–290/t (2021–2022 norms)</div>
+        <div class="pi-detail">Would add $3–5 adj EPS and push shares toward $90–110. This is the central bull case. Market is pricing cycle trough, not recovery. Each $25/t potash upside = ~$0.45 EPS = ~6% stock upside at 14x P/E.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-guidance -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 5: VALUATION & DCF                                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-valuation">
+
+  <div class="section-head">Valuation Analysis — Peer Comps, Multiple Analysis, DCF <span>EV estimated: ~$43–44B · Net debt ~$10B · May 2026</span></div>
+
+  <!-- CURRENT MULTIPLES -->
+  <div class="grid-4" style="margin-bottom:24px">
+    <div class="card" style="text-align:center">
+      <div style="font-family:var(--mono); font-size:28px; font-weight:700; color:#fff">7.3x</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">EV / Adj EBITDA (FY2025)</div>
+      <div style="font-size:10px; color:var(--text3); margin-top:2px;">EV ~$44B ÷ $6.05B</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-family:var(--mono); font-size:28px; font-weight:700; color:#fff">14.3x</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Trailing P/E (LTM EPS $4.91)</div>
+      <div style="font-size:10px; color:var(--text3); margin-top:2px;">Price $70.13</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-family:var(--mono); font-size:28px; font-weight:700; color:#fff">6.9x</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">EV / Adj EBITDA (FY2026E)</div>
+      <div style="font-size:10px; color:var(--text3); margin-top:2px;">Using ~$6.3B 2026E</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-family:var(--mono); font-size:28px; font-weight:700; color:var(--yellow)">6.17x</div>
+      <div style="font-size:11px; color:var(--text2); margin-top:4px;">Sector Avg EV/EBITDA</div>
+      <div style="font-size:10px; color:var(--text3); margin-top:2px;">5-yr median 10.6x (Zacks Aug'25)</div>
+    </div>
+  </div>
+
+  <!-- PEER COMPS -->
+  <h2 class="sh">Peer Comparable Company Analysis</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Company</th><th>Ticker</th><th>EV/EBITDA</th><th>EBITDA Margin</th><th>Key Focus</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr class="val-row-highlight">
+          <td><strong>Nutrien</strong></td>
+          <td>NTR</td>
+          <td>~7.3x</td>
+          <td>22.5%</td>
+          <td>Potash / N / Retail</td>
+          <td>Integrated global; retail earnings stability</td>
+        </tr>
+        <tr>
+          <td>CF Industries</td>
+          <td>CF</td>
+          <td>~6–7x</td>
+          <td>~40%+</td>
+          <td>Pure N, NA focus</td>
+          <td>Higher margins, no retail drag; lower EV/EBITDA due to pure-play cycle exposure</td>
+        </tr>
+        <tr>
+          <td>Mosaic</td>
+          <td>MOS</td>
+          <td>~5.3x</td>
+          <td>~18%</td>
+          <td>Phosphate, Potash</td>
+          <td>Lower multiple; recovery story; no retail offset</td>
+        </tr>
+        <tr>
+          <td>Yara International</td>
+          <td>YAR (Oslo)</td>
+          <td>~8–9x</td>
+          <td>~15–18%</td>
+          <td>Nitrogen, Retail</td>
+          <td>European premium; similar integrated model</td>
+        </tr>
+        <tr>
+          <td>K+S AG</td>
+          <td>SDF (FRA)</td>
+          <td>~7–8x</td>
+          <td>~20%</td>
+          <td>Potash, salt</td>
+          <td>European operations; smaller scale</td>
+        </tr>
+        <tr>
+          <td>ICL Group</td>
+          <td>ICL</td>
+          <td>~8–10x</td>
+          <td>~25%</td>
+          <td>Potash, specialty</td>
+          <td>Premium for specialty/agronomic value products</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text3)">Sector Median (5-yr)</td>
+          <td style="color:var(--text3)">—</td>
+          <td style="color:var(--yellow)">10.6x</td>
+          <td style="color:var(--text3)">—</td>
+          <td style="color:var(--text3)">—</td>
+          <td style="color:var(--text3)">NTR trades at 31% discount to 5-yr sector median</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px; color:var(--text2); margin-bottom:24px;">
+    NTR at 7.3x is a premium to Mosaic (5.3x) justified by retail earnings stability (~29% of EBITDA), but a discount to Yara/ICL where specialty/retail models command higher multiples. NTR's current multiple of 7.3x vs the 5-year sector median of 10.6x implies <strong style="color:#fff">significant valuation re-rate potential</strong> if fertilizer cycle recovers.
+  </div>
+
+  <!-- DCF SCENARIOS -->
+  <h2 class="sh">DCF Scenario Analysis</h2>
+  <div class="scenario-grid">
+    <div class="scenario-card scenario-bear">
+      <div class="sc-label">🐻 Bear Case</div>
+      <div class="sc-price">~$48</div>
+      <div class="sc-detail">
+        <div>Potash stays soft: $220/t avg</div>
+        <div>Adj EBITDA: ~$5.5B</div>
+        <div>EV/EBITDA: 6.0x</div>
+        <div>Implied EV: $33B</div>
+        <div>Less net debt: ~$10B</div>
+        <div>Implied equity: ~$23B / ~480M shs</div>
+        <div style="color:var(--red); margin-top:8px;">-32% downside from $70.13</div>
+      </div>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="sc-label">⚖ Base Case</div>
+      <div class="sc-price">~$81</div>
+      <div class="sc-detail">
+        <div>Potash recovery: $255/t avg</div>
+        <div>Adj EBITDA: ~$6.5B</div>
+        <div>EV/EBITDA: 7.5x</div>
+        <div>Implied EV: $49B</div>
+        <div>Less net debt: ~$10B</div>
+        <div>Implied equity: ~$39B / ~480M shs</div>
+        <div style="color:var(--accent); margin-top:8px;">+16% upside from $70.13</div>
+      </div>
+    </div>
+    <div class="scenario-card scenario-bull">
+      <div class="sc-label">🐂 Bull Case</div>
+      <div class="sc-price">~$117</div>
+      <div class="sc-detail">
+        <div>Tight potash market: $290/t avg</div>
+        <div>Adj EBITDA: ~$7.8B</div>
+        <div>EV/EBITDA: 8.5x</div>
+        <div>Implied EV: $66B</div>
+        <div>Less net debt: ~$10B</div>
+        <div>Implied equity: ~$56B / ~480M shs</div>
+        <div style="color:var(--green); margin-top:8px;">+67% upside from $70.13</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DCF DETAIL -->
+  <h2 class="sh">DCF Intrinsic Value (WACC 8.5%, TGR 1.5%)</h2>
+  <div class="grid-2">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>DCF Input</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Base FCF (Year 1)</td><td>$3.0B</td></tr>
+          <tr><td>FCF Growth (Yr 1–5)</td><td>~4% p.a.</td></tr>
+          <tr><td>FCF Year 5</td><td>~$3.5B</td></tr>
+          <tr><td>Terminal Value (TV = FCF₅ / (WACC–g))</td><td>$3.5B ÷ 7% = $50B</td></tr>
+          <tr><td>PV of Terminal Value</td><td>~$33B</td></tr>
+          <tr><td>PV of FCFs (Yr 1–5)</td><td>~$12B</td></tr>
+          <tr class="bold"><td>Total EV (DCF)</td><td>~$45B</td></tr>
+          <tr><td>Less: Net Debt</td><td>~($10B)</td></tr>
+          <tr class="bold"><td>Equity Value</td><td>~$35B</td></tr>
+          <tr class="bold"><td>Per Share (~480M shares)</td><td class="est">~$73/share</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>DCF Conclusions</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:10px;">📌 <strong>DCF intrinsic value ~$73/share</strong> — essentially in line with current price of $70.13 at base case assumptions. The stock is <strong>fairly valued</strong> if potash stays near current levels ($250–255/t).</div>
+        <div style="margin-bottom:10px;">📌 <strong>Upside comes from re-rating, not model improvement.</strong> If potash recovers to mid-cycle $275–290/t range, FCF rises ~$1B, pushing intrinsic value to $90–110/share.</div>
+        <div style="margin-bottom:10px;">📌 <strong>WACC sensitivity:</strong> 1pp lower WACC (7.5%) → ~$85/share. 1pp higher (9.5%) → ~$62/share.</div>
+        <div>📌 <strong>Dividend provides floor:</strong> At $70, the 3.1% yield is well-covered (FCF yield ~6%). Dividend unlikely to be cut given current FCF generation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORICAL MULTIPLE CONTEXT -->
+  <h2 class="sh">Historical Valuation Context</h2>
+  <div class="card">
+    <div style="font-size:13px; color:var(--text); line-height:1.8; margin-bottom:16px;">
+      NTR has traded at a wide range of multiples through the cycle. Current 7.3x EV/EBITDA is:
+    </div>
+    <div class="bar-chart">
+      <div class="bar-row"><div class="bar-label" style="width:160px;text-align:left">5-Yr Sector Low</div><div class="bar-outer"><div class="bar-inner" style="width:23%; background:#e74c3c"></div></div><div class="bar-val miss">4.55x</div></div>
+      <div class="bar-row"><div class="bar-label" style="width:160px;text-align:left">Current NTR</div><div class="bar-outer"><div class="bar-inner" style="width:37%; background:#4a9eff"></div></div><div class="bar-val" style="color:var(--accent)">7.3x</div></div>
+      <div class="bar-row"><div class="bar-label" style="width:160px;text-align:left">Sector Average (now)</div><div class="bar-outer"><div class="bar-inner" style="width:31%; background:#f39c12"></div></div><div class="bar-val" style="color:#f39c12">6.17x</div></div>
+      <div class="bar-row"><div class="bar-label" style="width:160px;text-align:left">5-Yr Sector Median</div><div class="bar-outer"><div class="bar-inner" style="width:53%; background:#2ecc71"></div></div><div class="bar-val beat">10.59x</div></div>
+      <div class="bar-row"><div class="bar-label" style="width:160px;text-align:left">5-Yr Sector High</div><div class="bar-outer"><div class="bar-inner" style="width:90%; background:#8e44ad"></div></div><div class="bar-val">18.05x</div></div>
+    </div>
+    <div style="font-size:12px; color:var(--text2); margin-top:14px;">NTR trades <strong style="color:#fff">above</strong> the current sector average (6.17x) — justified by retail earnings stability and superior scale — but <strong style="color:#fff">well below</strong> the 5-year sector median (10.6x), reflecting cycle trough pessimism. A partial mean reversion to 9–10x would imply $95–110/share.</div>
+  </div>
+
+</div><!-- /tab-valuation -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 6: RISKS & CATALYSTS                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-riskscat">
+
+  <div class="section-head">Risks vs. Catalysts — Ranked by Materiality / Immediacy</div>
+
+  <div class="rc-grid">
+    <!-- RISKS -->
+    <div class="rc-card rc-risks">
+      <div class="rc-header">⚠ Key Risks</div>
+      <div class="rc-item">
+        <div class="rc-num">1</div>
+        <div class="rc-content">
+          <div class="title">Potash Price Decline <span class="sev sev-high">HIGH</span></div>
+          <div class="detail">$25/t = ±$280M EBITDA / ±$0.45 EPS. Potash = 37% of 2025 adj EBITDA. Belarus/Russia sanctions relief would be the key trigger.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">2</div>
+        <div class="rc-content">
+          <div class="title">Natural Gas Price Spike <span class="sev sev-high">HIGH</span></div>
+          <div class="detail">$1/MMBtu = ±$180M EBITDA. NA plants on Henry Hub (~$3.5) — advantaged vs European TTF, but still exposed.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">3</div>
+        <div class="rc-content">
+          <div class="title">Trade Policy / Tariffs <span class="sev sev-high">HIGH</span></div>
+          <div class="detail">US tariffs on Canadian potash (Canpotex ships from SK). Broader ag trade disruptions in Brazil, India, or SE Asia would hurt volumes.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">4</div>
+        <div class="rc-content">
+          <div class="title">FX Headwinds <span class="sev sev-med">MEDIUM</span></div>
+          <div class="detail">CAD, BRL, AUD vs USD exposure. Brazil FX derivative loss $220M in 2024; $360M total 2024 FX items stripped from adj EBITDA.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">5</div>
+        <div class="rc-content">
+          <div class="title">Retail Margin Pressure <span class="sev sev-med">MEDIUM</span></div>
+          <div class="detail">Brazil underperformance; crop protection generic competition; weather-shortened application windows compressing volumes.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">6</div>
+        <div class="rc-content">
+          <div class="title">Phosphate Strategic Uncertainty <span class="sev sev-med">MEDIUM</span></div>
+          <div class="detail">Review outcome unknown. Impairment risk if sold at discount to book; execution risk if restructuring chosen.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">7</div>
+        <div class="rc-content">
+          <div class="title">Nitrogen Supply Easing <span class="sev sev-med">MEDIUM</span></div>
+          <div class="detail">Chinese export restriction removal would soften global N prices; Chinese producers have substantial idle capacity.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">8</div>
+        <div class="rc-content">
+          <div class="title">Weather / Agronomic Risk <span class="sev sev-med">MEDIUM</span></div>
+          <div class="detail">Drought in Australia, floods in Brazil/US, shortened planting windows can compress spring volumes by 5–15%.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">9</div>
+        <div class="rc-content">
+          <div class="title">Balance Sheet Leverage <span class="sev sev-low">LOW</span></div>
+          <div class="detail">Net debt ~$10B at 1.6x EBITDA. Investment grade maintained. Manageable but limits M&A optionality.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATALYSTS -->
+    <div class="rc-card rc-cats">
+      <div class="rc-header">🚀 Key Catalysts</div>
+      <div class="rc-item">
+        <div class="rc-num">1</div>
+        <div class="rc-content">
+          <div class="title">Potash Price Recovery to $260–290/t</div>
+          <div class="detail">The central bull case. +$280–840M adj EBITDA per $25/t increment. Recovery to 2021 norms → $90–110 stock. Ongoing catalyst.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">2</div>
+        <div class="rc-content">
+          <div class="title">China/India Contract Signings at Premium</div>
+          <div class="detail">Q1–Q3 annually. Sets global benchmark. Tight inventory entering 2026 → potential upside pricing vs 2025 contracts.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">3</div>
+        <div class="rc-content">
+          <div class="title">Phosphate Strategic Decision</div>
+          <div class="detail">Decision expected 2026. Sale could generate $1–2B+ proceeds; removes drag segment; re-rates remaining portfolio. NOT priced in.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">4</div>
+        <div class="rc-content">
+          <div class="title">US Corn Acres 94–96M (Spring 2026)</div>
+          <div class="detail">Incremental NA crop input demand. Each 1M acres = ~500kt potash demand. NTR benefits via both retail and upstream.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">5</div>
+        <div class="rc-content">
+          <div class="title">4th Consecutive Year Potash Demand Growth</div>
+          <div class="detail">CY2026 consensus ~74–77Mt vs 74.5Mt in 2025. Structural tightening with limited new supply additions near-term.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">6</div>
+        <div class="rc-content">
+          <div class="title">Share Buyback Execution (~$1.7B authorization)</div>
+          <div class="detail">Up to 5% of shares per NCIB. At $70/share, full buyback = ~5% EPS accretion. Ongoing; management has strong capital return track record.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">7</div>
+        <div class="rc-content">
+          <div class="title">Proprietary Products Expansion (24% → 30%+)</div>
+          <div class="detail">Multi-year. Shifting retail mix toward higher-margin branded products (Loveland, Helios, ESN) would re-rate retail multiple.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">8</div>
+        <div class="rc-content">
+          <div class="title">Nitrogen Margin Uplift (92% → 94%+ op. rate)</div>
+          <div class="detail">Record 94% in 9M 2025. Sustaining high reliability with Trinidad/New Madrid exits improves quality of N earnings significantly.</div>
+        </div>
+      </div>
+      <div class="rc-item">
+        <div class="rc-num">9</div>
+        <div class="rc-content">
+          <div class="title">Analyst Rating Upgrades</div>
+          <div class="detail">7 of 24 analysts on Hold/Sell. 16% spread to consensus $81.40 target. Catalyst upgrades could drive near-term re-rating.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-riskscat -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 7: INVESTMENT RATING                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-rating">
+
+  <div class="section-head">Bottom-Line Investment Assessment — Methodology Transparency <span>DCF · EV/EBITDA comps · FCF yield · P/E · sell-side consensus — each assessed separately</span></div>
+
+  <!-- METHODOLOGY DISCLAIMER -->
+  <div style="background:rgba(74,158,255,0.07); border:1px solid rgba(74,158,255,0.25); border-radius:6px; padding:16px 20px; margin-bottom:24px; font-size:13px; color:var(--text); line-height:1.7;">
+    <strong style="color:var(--accent)">Methodology note:</strong> The rating below is built bottom-up from four independent valuation methods, each shown separately. The sell-side consensus ($81.40 target) is <em>presented alongside</em> the fundamental work but does <strong>not</strong> drive the rating. The honest answer is that each method gives a different answer — and transparency about that is more useful than a single blended number. The final rating reflects where the weight of evidence sits <em>and</em> what assumptions are required to justify it.
+  </div>
+
+  <!-- ── VALUATION METHOD WATERFALL ── -->
+  <h2 class="sh">Valuation Method Waterfall — What Each Method Says</h2>
+  <div class="tbl-wrap" style="margin-bottom:8px">
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Key Assumptions</th>
+          <th>Implied Fair Value</th>
+          <th>vs $70.13</th>
+          <th>Signal</th>
+          <th>Weight in Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DCF — Trough pricing</strong></td>
+          <td>Potash $252/t (2025A), WACC 8.5%, TGR 1.5%, FCF $3.0B Yr1</td>
+          <td class="neu">~$73/share</td>
+          <td class="neu">+4%</td>
+          <td><span class="badge badge-yellow">HOLD / FAIR VALUE</span></td>
+          <td>High — most conservative anchor</td>
+        </tr>
+        <tr>
+          <td><strong>DCF — Mid-cycle pricing</strong></td>
+          <td>Potash $270/t (+$18/t from 2025A), WACC 8.5%, FCF $3.4B Yr1</td>
+          <td class="beat">~$87/share</td>
+          <td class="beat">+24%</td>
+          <td><span class="badge badge-green">BUY</span></td>
+          <td>High — central scenario if potash recovers</td>
+        </tr>
+        <tr>
+          <td><strong>DCF — Cycle recovery</strong></td>
+          <td>Potash $290/t (still below 2021 peak), WACC 8.5%, FCF $3.8B Yr1</td>
+          <td class="beat">~$104/share</td>
+          <td class="beat">+48%</td>
+          <td><span class="badge badge-green">STRONG BUY</span></td>
+          <td>Medium — requires material potash move</td>
+        </tr>
+        <tr style="background:rgba(231,76,60,0.05)">
+          <td><strong>EV/EBITDA vs current sector avg</strong></td>
+          <td>6.17x current sector avg × FY2025 $6.05B EBITDA − $10B debt</td>
+          <td class="miss">~$57/share</td>
+          <td class="miss">-19%</td>
+          <td><span class="badge badge-red">SELL / OVERVALUED</span></td>
+          <td>Low — sector avg is depressed at cycle trough</td>
+        </tr>
+        <tr>
+          <td><strong>EV/EBITDA vs 5-yr sector median</strong></td>
+          <td>10.6x 5-yr median × FY2025 $6.05B EBITDA − $10B debt</td>
+          <td class="beat">~$124/share</td>
+          <td class="beat">+77%</td>
+          <td><span class="badge badge-green">STRONG BUY</span></td>
+          <td>Low-Med — median includes supercycle; overstates re-rate potential</td>
+        </tr>
+        <tr>
+          <td><strong>EV/EBITDA — normalised mid-cycle</strong></td>
+          <td>8.5x (conservative mid-cycle multiple) × FY2026E $6.3B − $10B debt</td>
+          <td class="beat">~$84/share</td>
+          <td class="beat">+20%</td>
+          <td><span class="badge badge-green">BUY</span></td>
+          <td>High — most credible comps-based anchor</td>
+        </tr>
+        <tr>
+          <td><strong>P/E — forward 2026E</strong></td>
+          <td>Adj EPS ~$5.50 × 14–15x sector P/E</td>
+          <td class="beat">~$77–83/share</td>
+          <td class="beat">+10–18%</td>
+          <td><span class="badge badge-green">BUY</span></td>
+          <td>Medium — P/E is depressed but EPS recovery is the thesis</td>
+        </tr>
+        <tr>
+          <td><strong>FCF Yield (floor valuation)</strong></td>
+          <td>$2.1B FCF trough ÷ 5.5% required yield (peer floor)</td>
+          <td class="beat">~$80/share</td>
+          <td class="beat">+14%</td>
+          <td><span class="badge badge-green">BUY</span></td>
+          <td>High — hard cash metric; least assumption-dependent</td>
+        </tr>
+        <tr style="background:rgba(74,158,255,0.06)">
+          <td><strong>Sell-side consensus</strong></td>
+          <td>17 Buy / 5 Hold / 2 Sell; avg target $81.40 (24 analysts)</td>
+          <td style="color:var(--accent)">$81.40 avg</td>
+          <td class="beat">+16%</td>
+          <td><span class="badge badge-blue">BUY (consensus)</span></td>
+          <td>Reference only — not a driver of this rating</td>
+        </tr>
+        <tr class="bold">
+          <td>Weighted Fair Value Range</td>
+          <td colspan="2" style="color:var(--accent); font-family:var(--mono)">$80–90 (base) | $70–73 (trough) | $100–110 (recovery)</td>
+          <td class="beat">+14–28%</td>
+          <td><span class="badge badge-green">BUY — CYCLE RECOVERY REQUIRED</span></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px; color:var(--text3); margin-bottom:28px;">Note: EV = market cap ($33.66B) + net debt (~$10B) ≈ $43–44B estimated. FCF yield floor uses TROUGH FCF — at mid-cycle FCF (~$3.5B), floor valuation rises to ~$115/share at 5.5% yield. That is the upside scenario, not the base.</div>
+
+  <!-- HONEST RATING METHODOLOGY -->
+  <h2 class="sh">What Is Actually Driving the Rating?</h2>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card" style="border-color:rgba(74,158,255,0.3)">
+      <h3 style="color:var(--accent)">What Justifies the BUY</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:10px; padding:10px; background:var(--bg3); border-radius:4px;">
+          <strong style="color:var(--green)">1. FCF yield (6%+ at trough) — hardest metric.</strong> $2.1B FCF in 2025 against a $33.7B market cap = 6.2% yield. This is trough FCF. At any normalisation of potash pricing, FCF rises materially. A 6%+ FCF yield from a world-class asset with a growing dividend is a genuine value signal independent of cycle.
+        </div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--bg3); border-radius:4px;">
+          <strong style="color:var(--green)">2. DCF at modest $270/t potash → $87/share (+24%).</strong> The key question is whether $252/t (2025A) is the right through-the-cycle price. Historically NTR realised $180–220/t pre-2021, spiked to $370/t+ in 2022, and is now at $252/t. If $250–270/t is a sustainable mid-cycle level (supported by 4 consecutive years of demand growth), DCF says $87. That's the genuine intrinsic upside.
+        </div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--bg3); border-radius:4px;">
+          <strong style="color:var(--green)">3. Multiple re-rate at 8.5x EV/EBITDA → $84/share.</strong> 8.5x is NOT a bullish multiple — it's below Yara, below ICL, and well below NTR's own historical average. If earnings visibility improves as potash recovers, even a modest multiple expansion from 7.3x → 8.5x adds ~$14/share.
+        </div>
+        <div style="padding:10px; background:var(--bg3); border-radius:4px;">
+          <strong style="color:var(--green)">4. Asymmetry: Phosphate is a free call option.</strong> Potential $1–2B proceeds from strategic review = $2–4/share unpriced upside. This isn't in the DCF or comps.
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(231,76,60,0.3)">
+      <h3 style="color:var(--red)">Where the BUY Thesis Can Fail</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:10px; padding:10px; background:var(--red-bg); border-radius:4px; border:1px solid var(--red-dim)">
+          <strong style="color:var(--red)">Critical assumption: potash recovery.</strong> The DCF at current $252/t pricing gives only ~$73 — essentially fair value, not a buy. If potash reverts toward pre-2021 levels ($200–220/t), DCF drops to ~$55–60. The BUY thesis is <em>fundamentally a potash cycle bet</em>. Without potash recovery, this is a HOLD, not a BUY.
+        </div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--red-bg); border-radius:4px; border:1px solid var(--red-dim)">
+          <strong style="color:var(--red)">EV/EBITDA vs current sector: NTR is at a PREMIUM.</strong> At 7.3x vs current sector average 6.17x, NTR is not cheap on current sector multiples. The "discount to median" argument uses the 5-yr median (10.6x) which includes the supercycle peak — a misleading comparison. Adjusted for current cycle positioning, NTR is fairly to slightly expensively valued on comps.
+        </div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--red-bg); border-radius:4px; border:1px solid var(--red-dim)">
+          <strong style="color:var(--red)">Net debt $10B limits the re-rate.</strong> At 1.6x leverage, every turn of EBITDA expansion amplifies equity value, but so does every turn of contraction. If EBITDA fell to $5B, leverage rises to 2x — not a crisis but limits multiple expansion.
+        </div>
+        <div style="padding:10px; background:var(--red-bg); border-radius:4px; border:1px solid var(--red-dim)">
+          <strong style="color:var(--red)">Macro headwinds compound (Scenario Analysis tab).</strong> Iran peace deal + El Niño developing simultaneously = near-term earnings risk. The compound scenario could push fair value toward $58–65 on a 6–12 month horizon before recovery.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RATING SCALE -->
+  <h2 class="sh">Rating Scale — Conditional on Potash View</h2>
+  <div class="rating-scale">
+    <div style="font-size:13px; color:var(--text2); margin-bottom:8px;">The rating depends critically on your view of the potash price cycle. Two honest ratings are presented:</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px">
+      <div style="padding:14px; background:rgba(243,156,18,0.08); border:1px solid rgba(243,156,18,0.3); border-radius:6px;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--yellow); margin-bottom:6px;">If potash stays at $250–252/t (no recovery)</div>
+        <div style="font-family:var(--mono); font-size:22px; font-weight:700; color:var(--yellow)">HOLD</div>
+        <div style="font-size:12px; color:var(--text2); margin-top:4px;">DCF: ~$73 (4% upside). FCF yield supportive. Dividend paid while you wait. No re-rate catalyst.</div>
+      </div>
+      <div style="padding:14px; background:rgba(46,204,113,0.08); border:1px solid rgba(46,204,113,0.3); border-radius:6px;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:6px;">If potash recovers to $265–290/t (mid-cycle)</div>
+        <div style="font-family:var(--mono); font-size:22px; font-weight:700; color:var(--green)">BUY</div>
+        <div style="font-size:12px; color:var(--text2); margin-top:4px;">DCF: $87–104. FCF yield expands. Multiple re-rates to 8–9x. 24–48% total return potential. Supported by demand fundamentals.</div>
+      </div>
+    </div>
+    <div class="rating-track">
+      <div style="background:#e74c3c; flex:1"></div>
+      <div style="background:#c0392b; flex:0.5"></div>
+      <div style="background:#e67e22; flex:1"></div>
+      <div style="background:#f39c12; flex:1.5"></div>
+      <div style="background:#27ae60; flex:1.5"></div>
+      <div style="background:#2ecc71; flex:1"></div>
+      <div style="background:#1abc9c; flex:0.5"></div>
+    </div>
+    <div style="position:relative; height:20px;">
+      <!-- HOLD marker ~50% -->
+      <div style="position:absolute; left:49%; transform:translateX(-50%); font-size:16px; margin-top:-4px; color:var(--yellow)">▲</div>
+      <!-- BUY marker ~65% -->
+      <div style="position:absolute; left:65%; transform:translateX(-50%); font-size:16px; margin-top:-4px; color:var(--green)">▲</div>
+    </div>
+    <div class="rating-labels">
+      <span>Strong Sell</span>
+      <span>Sell</span>
+      <span>Underweight</span>
+      <span style="color:var(--yellow); font-weight:700">HOLD ◄ (no recovery)</span>
+      <span style="color:var(--green); font-weight:700">BUY ◄ (mid-cycle)</span>
+      <span>Strong Buy</span>
+      <span>Conviction Buy</span>
+    </div>
+  </div>
+
+  <!-- THESIS STATEMENT — HONEST VERSION -->
+  <div class="card" style="border-color:rgba(74,158,255,0.3); margin-bottom:24px; margin-top:24px">
+    <h3 style="color:var(--accent)">Honest Investment Thesis — What the Fundamentals Actually Say</h3>
+    <div class="investment-thesis">
+      <strong>This is a cycle recovery call, not a pure intrinsic value buy.</strong> At $70.13, NTR is approximately fairly valued on a DCF using trough potash pricing ($252/t) — the DCF gives ~$73, which is 4% upside. The FCF yield of 6%+ provides a genuine value floor and the dividend (3.1%) compensates you for waiting. But neither metric makes a compelling standalone BUY case at current prices.
+      <br><br>
+      <strong>The BUY thesis requires believing potash prices will recover to $265–290/t</strong> — a modest normalisation, not a return to the 2022 supercycle. At that level, DCF intrinsic value rises to $87–104/share, and a multiple re-rate from 7.3x to 8.0–8.5x EV/EBITDA (below every comparable except Mosaic) adds another $10–15/share. Combined, that implies 30–50% total return over 24–36 months.
+      <br><br>
+      <strong>The peer multiple argument is nuanced:</strong> NTR at 7.3x is actually a <em>premium</em> to the current sector average (6.17x), so it is not cheap on current-year comps. The discount argument is valid only against mid-cycle norms (8.5–10x), which requires earnings recovery to materialise. If potash stays at $250/t permanently, there is no re-rate and the HOLD view is correct.
+      <br><br>
+      <strong>Sell-side consensus ($81.40, +16%) reinforces the mid-cycle recovery view</strong> but should not substitute for your own potash price view. 7 of 24 analysts remain on Hold/Sell — a meaningful minority reflecting uncertainty about the cycle timing.
+      <br><br>
+      <strong>Bottom line:</strong> Rate as <span style="color:var(--green); font-weight:700">BUY (moderate conviction)</span> on the view that $252/t is not the sustainable potash price and that 4 consecutive years of demand growth with no major new supply creates a credible recovery path. This is a <strong>12–36 month thesis.</strong> Rate as <span style="color:var(--yellow); font-weight:700">HOLD</span> if you believe potash is structurally range-bound at $220–255/t. The Phosphate strategic review, buyback execution and El Niño-driven demand rebound (2027) are upside optionality layers that do not need to be fully valued to support the base case.
+    </div>
+  </div>
+
+  <!-- BULL/BEAR/BASE SCORECARD -->
+  <h2 class="sh">Investment Scorecard</h2>
+  <div class="grid-3" style="margin-bottom:24px">
+    <div class="card">
+      <h3 style="color:var(--green)">✓ Genuine Fundamental Positives</h3>
+      <div style="font-size:13px; line-height:1.8; color:var(--text)">
+        <div>• 6%+ FCF yield at trough earnings</div>
+        <div>• $2.20/share dividend; 3.1% yield; well-covered</div>
+        <div>• World's largest potash producer; $58/t cash cost</div>
+        <div>• Retail provides ~$1.7B EBITDA earnings floor</div>
+        <div>• 4 consecutive yrs potash demand growth, limited new supply</div>
+        <div>• 92% ammonia op rate → nitrogen structurally improved</div>
+        <div>• DCF = $87 at only $270/t potash (mid-cycle)</div>
+        <div>• Phosphate review = unpriced $1–2B option</div>
+        <div>• $1.7B buyback = ~5% EPS accretion if fully executed</div>
+        <div>• Net debt 1.6x — manageable, investment grade</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">✗ Genuine Risks / Thesis Breakers</h3>
+      <div style="font-size:13px; line-height:1.8; color:var(--text)">
+        <div>• Potash at $252/t = DCF only ~$73 (barely fair value)</div>
+        <div>• 7.3x EV/EBITDA = premium to current sector, not cheap</div>
+        <div>• Iran peace deal removes nitrogen war premium (-$5–8/sh)</div>
+        <div>• El Niño developing (>90% probability) → Australia drag</div>
+        <div>• Belarus/Russia supply overhang if geopolitics ease</div>
+        <div>• China urea export restrictions — reversal risk</div>
+        <div>• 2026 nitrogen volumes -13% vs 2025A (Trinidad exit)</div>
+        <div>• Brazil retail underperformance; FX derivative losses</div>
+        <div>• $10B net debt constrains multiple re-rate</div>
+        <div>• Potash reversion to pre-2021 ($200–220/t) → DCF ~$55</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--yellow)">⚖ Key Swing Factors (decide the rating)</h3>
+      <div style="font-size:13px; line-height:1.8; color:var(--text)">
+        <div>🔑 <strong>Potash price trajectory</strong> — single biggest driver</div>
+        <div>🔑 <strong>China/India 2026 contract pricing</strong> — imminent catalyst</div>
+        <div>📋 Phosphate strategic decision (2026)</div>
+        <div>🕊 Iran peace deal timing + N price reversion speed</div>
+        <div>🌊 El Niño strength (NOAA: 90% probability, 2026)</div>
+        <div>🌽 US corn acres 2026 (94–96M expected)</div>
+        <div>💰 Buyback pace ($1.7B authorised)</div>
+        <div>⛽ Henry Hub nat gas trajectory ($1/MMBtu = ±$180M)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <h2 class="sh">At-a-Glance: Method-by-Method Fair Value</h2>
+  <div class="tbl-wrap" style="max-width:750px">
+    <table>
+      <thead>
+        <tr><th>Valuation Method</th><th>Implied Fair Value</th><th>Signal</th><th>Key Assumption</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>DCF — trough pricing ($252/t K)</td><td class="neu">~$73</td><td><span class="badge badge-yellow">HOLD</span></td><td>Potash stays at 2025A levels</td></tr>
+        <tr><td>DCF — mid-cycle ($270/t K)</td><td class="beat">~$87</td><td><span class="badge badge-green">BUY</span></td><td>Modest potash recovery</td></tr>
+        <tr><td>DCF — cycle recovery ($290/t K)</td><td class="beat">~$104</td><td><span class="badge badge-green">STRONG BUY</span></td><td>Return to early-2021 pricing</td></tr>
+        <tr><td>EV/EBITDA vs current sector (6.17x)</td><td class="miss">~$57</td><td><span class="badge badge-red">SELL</span></td><td>Sector stays at trough multiples</td></tr>
+        <tr><td>EV/EBITDA vs normalised (8.5x)</td><td class="beat">~$84</td><td><span class="badge badge-green">BUY</span></td><td>Multiple re-rates as earnings recover</td></tr>
+        <tr><td>P/E on 2026E adj EPS (~$5.50)</td><td class="beat">~$77–83</td><td><span class="badge badge-green">BUY</span></td><td>Sector P/E 14–15x; EPS growth</td></tr>
+        <tr><td>FCF yield floor (5.5% required)</td><td class="beat">~$80</td><td><span class="badge badge-green">BUY</span></td><td>Trough FCF $2.1B capitalised</td></tr>
+        <tr><td>Sell-side consensus (reference only)</td><td style="color:var(--accent)">$81.40</td><td><span class="badge badge-blue">BUY</span></td><td>24 analysts' model outputs</td></tr>
+        <tr class="bold"><td>This report — base case range</td><td style="color:var(--accent)">$80–90</td><td><span class="badge badge-green">BUY (mid-cycle)</span></td><td>$270/t potash; 8.0–8.5x EV/EBITDA</td></tr>
+        <tr class="bold"><td>This report — trough/hold case</td><td style="color:var(--yellow)">~$73</td><td><span class="badge badge-yellow">HOLD (no recovery)</span></td><td>Potash stays at $252/t; 7.3x multiple</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:24px; padding:16px; background:var(--bg3); border-radius:6px; font-size:11px; color:var(--text3); line-height:1.7;">
+    <strong style="color:var(--text2)">Disclaimer:</strong> This report is for informational purposes only. All figures in USD unless stated. Financial data sourced from Nutrien SEC 6-K filings (FY2019–FY2025), Yahoo Finance (yfinance API), and publicly available sources. Estimates and forecasts are based on public guidance and analyst consensus; they are subject to change. This is not investment advice. Past performance does not guarantee future results. Compiled: May 24–25, 2026.
+  </div>
+
+</div><!-- /tab-rating -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<!-- TAB 8: SCENARIO ANALYSIS                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="panel" id="tab-scenarios">
+
+  <div class="section-head">Scenario Analysis — Iran War Peace Deal & El Niño Historical Pattern <span>Research: May 25, 2026 · Sources: CNBC, CSIS, IFPRI, farmdoc, NOAA, Reuters</span></div>
+
+  <!-- ────────────────────────────── MACRO CONTEXT ────────────────────────────── -->
+  <div style="background:rgba(243,156,18,0.08); border:1px solid rgba(243,156,18,0.25); border-radius:6px; padding:16px 20px; margin-bottom:28px; font-size:13px; color:var(--text); line-height:1.7;">
+    <strong style="color:var(--yellow)">⚡ Two compounding macro risks in focus as of May 2026:</strong><br>
+    <strong>(1)</strong> The US-Israel-Iran war that began Feb 28, 2026 has elevated global nitrogen fertilizer prices 20–50% above pre-war levels via Strait of Hormuz disruption. A peace deal appears imminent — Trump described it as "largely negotiated" on May 23, 2026. What happens to NTR earnings if nitrogen prices normalise?<br>
+    <strong>(2)</strong> NOAA is forecasting &gt;90% probability of a new El Niño developing in mid-2026, with a 1-in-4 chance of a "super" event. History shows NTR is <em>negatively</em> impacted <em>during</em> the event but <em>positively</em> impacted in the year that follows. Which phase are we in?
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- SCENARIO 1: IRAN WAR PEACE DEAL                                           -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <h2 class="sh" style="color:var(--red)">⚔ Scenario 1 — Iran War Peace Deal: Nitrogen Price Reversion</h2>
+
+  <!-- Context box -->
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card" style="border-color:rgba(231,76,60,0.3)">
+      <h3 style="color:var(--red)">Why Iran Matters for N Fertilizer</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:8px;">🏭 <strong>Iran's capacity:</strong> ~8.9Mt/yr urea production; 3rd largest global urea exporter (4.5Mt in 2024)</div>
+        <div style="margin-bottom:8px;">🚢 <strong>Strait of Hormuz:</strong> ~35% of global urea exports + 20% of global LNG transits through the strait. War-driven disruption = effective supply removal</div>
+        <div style="margin-bottom:8px;">🌏 <strong>Iran's key markets:</strong> Brazil, Turkey, Argentina — directly competing with NTR's Nitrogen in LatAm</div>
+        <div style="margin-bottom:8px;">🔥 <strong>Price spike:</strong> Egyptian FOB urea jumped from ~$400–490/t (pre-war) → ~$677–700/t peak (March 2026) → ~$502/t currently (still ~22% above pre-war)</div>
+        <div>⚠ <strong>Current status:</strong> Fragile ceasefire since April 8 + peace deal "largely negotiated" per Trump (May 23, 2026). Backlog may take months to clear even after deal.</div>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(231,76,60,0.3)">
+      <h3 style="color:var(--red)">Nitrogen Price: Pre-War vs War-Premium vs NTR Realised</h3>
+      <div class="tbl-wrap" style="margin:0; border:none">
+        <table style="font-size:12px">
+          <thead><tr><th>Product</th><th>Pre-War Benchmark</th><th>War-Peak Benchmark</th><th>Current (~May '26)</th><th>NTR 2025 Realised</th></tr></thead>
+          <tbody>
+            <tr><td>Urea (FOB Egypt / NOLA barge)</td><td>$400–490/t</td><td class="miss">~$677–700/t</td><td>~$502/t</td><td>$490/t (Urea/ESN)</td></tr>
+            <tr><td>Anhydrous Ammonia (US Gulf)</td><td>~$430–490/t</td><td class="miss">~$931/t</td><td>~$650–700/t</td><td>$422/t (2025 NTR)</td></tr>
+            <tr><td>UAN / SNS</td><td>~$230–270/t</td><td class="miss">~$360–400/t</td><td>~$320–350/t</td><td>$268/t (SNS, 2025)</td></tr>
+            <tr><td>NTR blended N price</td><td>~$340–365/t</td><td class="miss">~$460–490/t</td><td>~$410–440/t</td><td>$365/t (FY2025)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:10px;">NTR's 2026 guidance (set Feb 18, 2026 — <em>10 days before the war began</em>) was calibrated to ~$365/t nitrogen. Current war-elevated pricing represents pure upside vs guidance. A peace deal reverting prices = that upside evaporates.</div>
+    </div>
+  </div>
+
+  <!-- EARNINGS IMPACT WATERFALL -->
+  <h2 class="sh">Earnings Impact: War Premium vs Peace-Deal Reversion</h2>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Nitrogen Price Scenario</th><th>Est. NTR N Price/t</th><th>2026E N Volumes</th><th>N Revenue Δ vs Guidance</th><th>Adj EBITDA Δ</th><th>Adj EPS Δ</th><th>Fair Value Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Guidance Baseline</strong> (pre-war, Feb 18)</td>
+            <td>~$365/t</td>
+            <td>9.45Mt</td>
+            <td class="neu">—</td>
+            <td class="neu">—</td>
+            <td class="neu">—</td>
+            <td class="neu">—</td>
+          </tr>
+          <tr style="background:rgba(46,204,113,0.05)">
+            <td><strong>Current (war premium)</strong></td>
+            <td class="beat">~$430–440/t</td>
+            <td>9.45Mt</td>
+            <td class="beat">+$615–710M</td>
+            <td class="beat">+$550–640M</td>
+            <td class="beat">+$0.86–1.00</td>
+            <td class="beat">+$8–10/sh</td>
+          </tr>
+          <tr style="background:rgba(231,76,60,0.05)">
+            <td><strong>Peace deal — soft reversion</strong> (prices → pre-war in ~6–9 months)</td>
+            <td class="miss">~$370–390/t</td>
+            <td>9.45Mt</td>
+            <td class="miss">+$45–235M</td>
+            <td class="miss">+$40–210M</td>
+            <td class="miss">+$0.06–0.33</td>
+            <td class="miss">+$0.5–3/sh</td>
+          </tr>
+          <tr style="background:rgba(231,76,60,0.1)">
+            <td><strong>Peace deal — hard reversion</strong> (Iran supply glut, prices drop below 2025)</td>
+            <td class="miss">~$320–340/t</td>
+            <td>9.0Mt ¹</td>
+            <td class="miss">-$225–405M</td>
+            <td class="miss">-$200–365M</td>
+            <td class="miss">-$0.31–0.57</td>
+            <td class="miss">-$3–5/sh</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Key Assumptions & Offsets</h3>
+      <div style="font-size:12px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:10px; padding:10px; background:var(--bg3); border-radius:4px;"><strong style="color:var(--green)">✓ Partial offset — Natural Gas:</strong> Peace deal reopens Hormuz → global LNG flows normalise → Henry Hub could ease $0.25–0.50/MMBtu below war-elevated levels → NTR cost savings of +$45–90M EBITDA (+$0.07–0.14 EPS). <em>This partially offsets the revenue hit.</em></div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--bg3); border-radius:4px;"><strong style="color:var(--green)">✓ Partial offset — Retail:</strong> Lower fertilizer input prices = better farmer economics in LatAm + NA → could lift NTR Retail margins / volumes → estimate +$50–100M EBITDA.</div>
+        <div style="margin-bottom:10px; padding:10px; background:var(--red-bg); border-radius:4px; border:1px solid var(--red-dim)"><strong style="color:var(--red)">✗ Additional risk — Iranian supply re-entry:</strong> Iran's 4.5Mt of urea exports (many destined for NTR's key LatAm markets) re-enter global supply → pushes prices below pre-war normalisation. Hard reversion scenario requires only a 6–12 month supply overshoot.</div>
+        <div style="padding:10px; background:var(--bg3); border-radius:4px;"><strong>¹ Volume risk:</strong> If Iranian urea supply returns and undercuts NTR in Brazil / Argentina, NTR may sacrifice volume to hold margins. Guidance already reflects Trinidad exit; further rationalisation possible.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO CARDS -->
+  <h2 class="sh">Iran War Peace Deal — Scenario Matrix</h2>
+  <div class="scenario-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:24px">
+    <div class="scenario-card" style="background:rgba(46,204,113,0.06); border-color:rgba(46,204,113,0.25)">
+      <div class="sc-label" style="color:var(--green)">🟢 WAR CONTINUES (NTR Bull)</div>
+      <div style="font-family:var(--mono); font-size:22px; font-weight:700; color:var(--green); margin-bottom:8px;">$78–85/sh</div>
+      <div class="sc-detail">
+        <div>N prices stay elevated: ~$430–450/t</div>
+        <div>2026E N EBITDA: ~$2.6–2.8B</div>
+        <div>Total Adj EBITDA: ~$6.5–6.8B</div>
+        <div>Adj EPS: ~$6.00–6.50</div>
+        <div style="color:var(--green); margin-top:8px;">+11–21% upside from $70.13</div>
+        <div style="color:var(--text3); font-size:10px; margin-top:4px;">NTR's nitrogen is structurally hedged by long Hormuz disruption. NA operations unaffected by strait.</div>
+      </div>
+    </div>
+    <div class="scenario-card" style="background:rgba(243,156,18,0.06); border-color:rgba(243,156,18,0.25)">
+      <div class="sc-label" style="color:var(--yellow)">🟡 SOFT PEACE DEAL (Base)</div>
+      <div style="font-family:var(--mono); font-size:22px; font-weight:700; color:var(--yellow); margin-bottom:8px;">$65–75/sh</div>
+      <div class="sc-detail">
+        <div>N prices normalise over 6–9 months</div>
+        <div>Avg 2026 N price: ~$380–400/t</div>
+        <div>2026E N EBITDA: ~$2.1–2.3B</div>
+        <div>Total Adj EBITDA: ~$5.6–6.0B</div>
+        <div>Adj EPS: ~$5.00–5.50</div>
+        <div style="color:var(--yellow); margin-top:8px;">Roughly flat to -7% from current price</div>
+        <div style="color:var(--text3); font-size:10px; margin-top:4px;">Back-half of 2026 prices normalise; H1 already captured. Potash recovery partially offsets.</div>
+      </div>
+    </div>
+    <div class="scenario-card scenario-bear">
+      <div class="sc-label">🔴 HARD REVERSION (NTR Bear)</div>
+      <div class="sc-price" style="font-size:22px;">$55–62/sh</div>
+      <div class="sc-detail">
+        <div>Iran supply glut + weak global demand</div>
+        <div>Avg 2026 N price: ~$320–340/t</div>
+        <div>2026E N EBITDA: ~$1.7–1.9B</div>
+        <div>Total Adj EBITDA: ~$5.0–5.3B</div>
+        <div>Adj EPS: ~$4.20–4.70</div>
+        <div style="color:var(--red); margin-top:8px;">-11–21% downside from $70.13</div>
+        <div style="color:var(--text3); font-size:10px; margin-top:4px;">Requires Iran plant restarts AND Chinese export restriction removal simultaneously.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:14px 18px; background:var(--bg3); border-left:3px solid var(--yellow); border-radius:0 6px 6px 0; font-size:13px; color:var(--text); line-height:1.7; margin-bottom:32px;">
+    <strong style="color:var(--yellow)">Bottom line — Scenario 1:</strong> The current $70.13 stock price appears to be pricing in a <em>partial</em> war premium — somewhere between the guidance baseline and the full war-elevated scenario. A peace deal announcement would likely cause a short-term nitrogen price pullback and modest NTR share weakness (-5 to -10%). However, the key offset is that <strong>NTR's primary earnings driver is potash (~37% of EBITDA)</strong>, which is <em>not</em> meaningfully impacted by the Iran war. A full fundamental re-rate lower would require the hard reversion scenario with Iranian supply overwhelming LatAm markets AND Chinese N export restrictions lifting simultaneously. Probability of that combined scenario: low (15–20%).
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- SCENARIO 2: EL NIÑO HISTORICAL PATTERN                                    -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <h2 class="sh" style="color:#00bcd4">🌊 Scenario 2 — El Niño: Historical Pattern & 2026 Outlook</h2>
+
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card" style="border-color:rgba(0,188,212,0.3)">
+      <h3 style="color:#00bcd4">2026 El Niño: Developing Now</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:8px;">📡 <strong>NOAA forecast (April 2026):</strong> >90% probability of El Niño emerging by May–July 2026; 96% chance through winter 2026–27; 1-in-4 chance of a <em>"super"</em> event.</div>
+        <div style="margin-bottom:8px;">🌏 <strong>Regional impacts:</strong> Australia drought (high confidence), Southern Africa dry, India weaker monsoon risk, SE Asia drier. Brazil soy: mixed (typically beneficial for Cerrado soy).</div>
+        <div style="margin-bottom:8px;">📅 <strong>Timing:</strong> Peak effect likely H2 2026 to H1 2027. Southern Hemisphere spring/summer (Oct–Feb) most at risk.</div>
+        <div>⚡ <strong>Compound risk:</strong> El Niño is developing simultaneously with the Iran war supply shock and Hormuz disruption — the same countries at risk from El Niño crop failures (India, SE Asia) are also the ones most dependent on Persian Gulf fertilizer imports.</div>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(0,188,212,0.3)">
+      <h3 style="color:#00bcd4">How El Niño Impacts NTR's Business</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8;">
+        <div style="margin-bottom:8px; padding:8px 12px; background:var(--red-bg); border-radius:4px; font-size:12px;">
+          <strong style="color:var(--red)">NEGATIVE — During El Niño year:</strong> Australia retail (drought → lower crop input demand); shortened planting windows in NA/EU; lower crop protection applications. NTR Australia is part of the ~$1.7B international retail business.
+        </div>
+        <div style="margin-bottom:8px; padding:8px 12px; background:var(--green-bg); border-radius:4px; font-size:12px;">
+          <strong style="color:var(--green)">POSITIVE — Brazil (El Niño year):</strong> El Niño typically brings <em>wetter</em> conditions to southern Brazil/Cerrado → record soy harvests → NTR's Brazilian retail benefits.
+        </div>
+        <div style="padding:8px 12px; background:var(--green-bg); border-radius:4px; font-size:12px;">
+          <strong style="color:var(--green)">POSITIVE — Year AFTER El Niño:</strong> La Niña typically follows → excellent Australian rains → strong crop year → demand catch-up, soil replenishment restocking, higher global grain prices → farmers plant aggressively = UPLIFT for NTR retail and upstream volumes.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORICAL EL NIÑO TABLE -->
+  <h2 class="sh">Historical El Niño Cycles: Impact on NTR Earnings</h2>
+  <div class="tbl-wrap" style="margin-bottom:24px">
+    <table>
+      <thead>
+        <tr>
+          <th>El Niño Event</th>
+          <th>Strength</th>
+          <th>El Niño Year</th>
+          <th>NTR Adj EBITDA (El Niño Yr)</th>
+          <th>YoY Δ</th>
+          <th>Year After</th>
+          <th>NTR Adj EBITDA (Year After)</th>
+          <th>YoY Δ</th>
+          <th>Key Driver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2018–19 El Niño</td>
+          <td>Moderate</td>
+          <td>FY2019</td>
+          <td>$3,934M</td>
+          <td class="miss">Below guidance ($4.0–4.3B)</td>
+          <td>FY2020</td>
+          <td class="beat">$4,025M</td>
+          <td class="beat">+2.3%</td>
+          <td>Minor weather drag in 2019; flat recovery in 2020</td>
+        </tr>
+        <tr>
+          <td>2023–24 Strong El Niño</td>
+          <td><strong>Strong</strong></td>
+          <td>FY2024</td>
+          <td>$5,355M</td>
+          <td class="miss">-12% vs FY2023</td>
+          <td>FY2025A</td>
+          <td class="beat">$6,046M</td>
+          <td class="beat">+13%</td>
+          <td>Australia retail impacted; 2025 rebound with record volumes + higher prices</td>
+        </tr>
+        <tr style="background:rgba(0,188,212,0.05); border:1px solid rgba(0,188,212,0.2)">
+          <td><strong>2026 El Niño (developing)</strong></td>
+          <td style="color:#00bcd4"><strong>Forecast: Strong–Super</strong></td>
+          <td><strong>FY2026–FY2027</strong></td>
+          <td class="est">$6.0–6.3B (2026E)</td>
+          <td class="est">Modest drag H2 2026</td>
+          <td><strong>FY2027–FY2028</strong></td>
+          <td class="est">~$6.5–7.0B (2027E)</td>
+          <td class="est">+8–15% historical pattern</td>
+          <td>Australia rebound + soil replenishment + La Niña crop boom expected</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REGIONAL IMPACT BREAKDOWN -->
+  <div class="grid-3" style="margin-bottom:24px">
+    <div class="card">
+      <h3 style="color:#e67e22">🇦🇺 Australia Retail Impact</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>El Niño year:</strong> Below-normal rainfall → poor pasture, lower crop areas planted → NTR Australia retail volumes and margins compress. International retail GM historically -$50–150M in drought years.</div>
+        <div style="margin-bottom:8px;"><strong>Year after:</strong> La Niña rains → rapid pasture/crop recovery → pent-up demand for nutrients, crop protection, seed → volumes surge +10–20%. Estimated EBITDA uplift: +$80–150M vs El Niño year.</div>
+        <div style="color:var(--green); font-size:12px;">▲ Net positive in 12–24 months following peak El Niño</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="color:#2ecc71">🌱 North America Impact</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>El Niño year:</strong> Mixed. Typically wetter US Gulf Coast and SE → delayed spring applications. Upper Midwest can see below-normal winter/spring precipitation.</div>
+        <div style="margin-bottom:8px;"><strong>Year after:</strong> La Niña brings drought risk to the US Corn Belt (the bigger concern for NTR). However, higher grain prices from constrained global supply support better farmer economics and input spending.</div>
+        <div style="color:var(--yellow); font-size:12px;">⚠ Neutral to modestly negative in El Niño year; La Niña drought risk in US is the bigger watch item.</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="color:#4a9eff">🌍 Potash Market (Global)</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.7;">
+        <div style="margin-bottom:8px;"><strong>El Niño year:</strong> India/SE Asia drought → reduced ability to afford/import potash → softer demand. However China and Brazil (soy) demand typically resilient or stronger.</div>
+        <div style="margin-bottom:8px;"><strong>Year after:</strong> Global crop damage from El Niño → soil depletion → when rains return, countries accelerate restocking (especially potash, which depletes with leaching). This historically supports a price recovery cycle.</div>
+        <div style="color:var(--green); font-size:12px;">▲ Positive for potash demand in year after strong El Niño</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUANTIFIED EL NIÑO SCENARIO -->
+  <h2 class="sh">Quantified Impact: 2026 El Niño on NTR</h2>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Business Line</th><th>El Niño Year (2026–27) Impact</th><th>Δ EBITDA</th><th>Year After (2027–28) Impact</th><th>Δ EBITDA</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Australia Retail</td>
+            <td class="miss">Drought → lower volumes/GM</td>
+            <td class="miss">-$80–150M</td>
+            <td class="beat">La Niña rebound + restocking</td>
+            <td class="beat">+$100–180M</td>
+          </tr>
+          <tr>
+            <td>Brazil Retail</td>
+            <td class="beat">El Niño = wetter Cerrado → record soy → higher input demand</td>
+            <td class="beat">+$50–100M</td>
+            <td class="neu">Normalise; La Niña can bring excess rain</td>
+            <td class="neu">-$20–50M</td>
+          </tr>
+          <tr>
+            <td>North America Retail</td>
+            <td class="neu">Modestly negative (weather delays)</td>
+            <td class="miss">-$30–70M</td>
+            <td class="beat">Higher grain prices → better farmer economics</td>
+            <td class="beat">+$50–100M</td>
+          </tr>
+          <tr>
+            <td>Potash Upstream</td>
+            <td class="neu">India/SE Asia demand modest softness</td>
+            <td class="miss">-$50–100M</td>
+            <td class="beat">Global soil replenishment → restocking demand</td>
+            <td class="beat">+$100–200M</td>
+          </tr>
+          <tr>
+            <td>Nitrogen Upstream</td>
+            <td class="neu">Less affected (El Niño primary channel is drought, not N prices)</td>
+            <td class="neu">-$20–50M</td>
+            <td class="beat">Higher crop prices → more N application</td>
+            <td class="beat">+$50–100M</td>
+          </tr>
+          <tr class="bold">
+            <td>Net Total</td>
+            <td class="miss">El Niño year headwind</td>
+            <td class="miss">-$130–370M</td>
+            <td class="beat">Post-El Niño tailwind</td>
+            <td class="beat">+$280–530M</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text2)">EPS equivalent</td>
+            <td colspan="2" class="miss">-$0.20–0.58 vs base</td>
+            <td colspan="2" class="beat">+$0.44–0.83 above base</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>El Niño Earnings Pattern: Summary</h3>
+      <div style="font-size:13px; color:var(--text); line-height:1.8; margin-bottom:14px;">Based on the 2023–24 strong El Niño cycle (NTR's most recent comparable):</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label" style="width:110px;text-align:left">Pre El Niño</div><div class="bar-outer"><div class="bar-inner" style="width:50%; background:#f39c12"></div></div><div class="bar-val" style="color:#f39c12">FY2023: $6.06B</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:110px;text-align:left">El Niño year</div><div class="bar-outer"><div class="bar-inner" style="width:44%; background:#e74c3c"></div></div><div class="bar-val miss">FY2024: $5.36B</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:110px;text-align:left">Year after</div><div class="bar-outer"><div class="bar-inner" style="width:50%; background:#2ecc71"></div></div><div class="bar-val beat">FY2025: $6.05B</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:110px;text-align:left">2026 (in El Niño)</div><div class="bar-outer"><div class="bar-inner" style="width:52%; background:#4a9eff; opacity:0.7"></div></div><div class="bar-val est">FY2026E: ~$6.0–6.3B</div></div>
+        <div class="bar-row"><div class="bar-label" style="width:110px;text-align:left">Year after (2027)</div><div class="bar-outer"><div class="bar-inner" style="width:57%; background:#2ecc71; opacity:0.7"></div></div><div class="bar-val est">FY2027E: ~$6.5–7.0B</div></div>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:14px;">
+        <strong style="color:#fff">Key finding:</strong> NTR has historically been <span class="badge badge-red">NEGATIVELY impacted during El Niño</span> (primarily via Australia retail and potash demand softness) but <span class="badge badge-green">POSITIVELY impacted in the year that follows</span>, as La Niña conditions and global soil replenishment create a demand rebound exceeding the prior year's losses.
+      </div>
+    </div>
+  </div>
+
+  <!-- COMBINED SCENARIO: COMPOUND RISK -->
+  <h2 class="sh" style="color:var(--yellow)">⚡ Compound Risk: Peace Deal + New El Niño Simultaneously</h2>
+  <div class="card" style="border-color:rgba(243,156,18,0.4); margin-bottom:24px">
+    <div style="font-size:13px; color:var(--text); line-height:1.8;">
+      <div style="margin-bottom:16px;">The concerning scenario for NTR investors is the <strong style="color:var(--yellow)">convergence of both events simultaneously</strong> — a peace deal in Iran (deflating nitrogen war premium) coinciding with a strong/super El Niño developing in mid-2026 (weighing on Australian retail + potash demand). Here is the combined P&amp;L stress test:</div>
+      <div class="tbl-wrap" style="margin:0 0 16px">
+        <table style="font-size:12px">
+          <thead>
+            <tr><th>Factor</th><th>EBITDA Impact</th><th>EPS Impact</th><th>Fair Value Impact</th><th>Timing</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Iran peace — nitrogen price reversion (soft)</td>
+              <td class="miss">-$350–550M</td>
+              <td class="miss">-$0.55–0.86</td>
+              <td class="miss">-$5–8/sh</td>
+              <td>H2 2026 (6–9 month lag)</td>
+            </tr>
+            <tr>
+              <td>El Niño — Australia/Asia demand softness</td>
+              <td class="miss">-$130–220M</td>
+              <td class="miss">-$0.20–0.35</td>
+              <td class="miss">-$2–4/sh</td>
+              <td>H2 2026 to H1 2027</td>
+            </tr>
+            <tr>
+              <td>Iranian supply re-entry (LatAm N competition)</td>
+              <td class="miss">-$80–150M (incremental)</td>
+              <td class="miss">-$0.12–0.24</td>
+              <td class="miss">-$1–2/sh</td>
+              <td>9–18 months post-peace</td>
+            </tr>
+            <tr>
+              <td>Partial offset: lower gas costs</td>
+              <td class="beat">+$45–90M</td>
+              <td class="beat">+$0.07–0.14</td>
+              <td class="beat">+$0.5–1/sh</td>
+              <td>Gradual over 6 months</td>
+            </tr>
+            <tr>
+              <td>Partial offset: retail farmer economics</td>
+              <td class="beat">+$50–100M</td>
+              <td class="beat">+$0.08–0.16</td>
+              <td class="beat">+$0.7–1.5/sh</td>
+              <td>12–18 months</td>
+            </tr>
+            <tr class="bold">
+              <td>Net combined compound headwind</td>
+              <td class="miss">-$515–730M</td>
+              <td class="miss">-$0.80–1.15</td>
+              <td class="miss">-$7–12/sh</td>
+              <td>Peak impact H2 2026 – H1 2027</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:14px 18px; background:var(--bg3); border-left:3px solid var(--yellow); border-radius:0 6px 6px 0;">
+        <strong style="color:var(--yellow)">Combined scenario verdict:</strong> If the peace deal delivers a soft nitrogen reversion AND El Niño develops into a strong/super event, the combined headwind to NTR could be <strong style="color:#fff;">$7–12/share</strong> vs current price, implying a trough fair value of approximately <strong style="color:#fff;">$58–63/share</strong>. Crucially, this is a <em>temporary</em> dip — the year-after tailwind (La Niña rebound + potash restocking + margin recovery) would historically justify a recovery to $75–90+ over a 18–36 month horizon. The dividend provides significant support during any drawdown, and potash pricing (37% of EBITDA) is <em>not</em> materially affected by the Iran war, providing an important anchor.
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBABILITIES TABLE -->
+  <h2 class="sh">Scenario Probability & NTR Share Price Matrix</h2>
+  <div class="tbl-wrap" style="max-width:900px; margin-bottom:24px">
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th>Probability (est.)</th><th>N Price 2026H2</th><th>Adj EBITDA 2026</th><th>Adj EPS 2026</th><th>NTR Fair Value Range</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(231,76,60,0.05)">
+          <td>Peace deal (soft) + Strong El Niño</td>
+          <td>25%</td>
+          <td>~$370–390/t</td>
+          <td>~$5.3–5.6B</td>
+          <td>~$4.40–4.80</td>
+          <td class="miss">$58–65</td>
+        </tr>
+        <tr style="background:rgba(243,156,18,0.05)">
+          <td>Peace deal (soft) + Moderate El Niño</td>
+          <td>30%</td>
+          <td>~$380–410/t</td>
+          <td>~$5.6–6.0B</td>
+          <td>~$4.80–5.20</td>
+          <td class="neu">$65–72</td>
+        </tr>
+        <tr style="background:rgba(74,158,255,0.05)">
+          <td>War continues + Moderate El Niño (base)</td>
+          <td>30%</td>
+          <td>~$420–450/t</td>
+          <td>~$6.3–6.7B</td>
+          <td>~$5.50–6.00</td>
+          <td class="beat">$72–85</td>
+        </tr>
+        <tr style="background:rgba(46,204,113,0.05)">
+          <td>War continues + Mild El Niño / No El Niño</td>
+          <td>15%</td>
+          <td>~$440–480/t</td>
+          <td>~$6.7–7.2B</td>
+          <td>~$6.00–6.60</td>
+          <td class="beat">$85–100</td>
+        </tr>
+        <tr class="bold">
+          <td>Probability-weighted fair value</td>
+          <td>100%</td>
+          <td>~$406/t</td>
+          <td>~$6.0–6.3B</td>
+          <td>~$5.20–5.50</td>
+          <td style="color:var(--accent)">~$72–78</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px; color:var(--text2); margin-bottom:24px;">Probability-weighted fair value of ~$72–78 implies modest upside from current $70.13 even under the compound risk scenario. The key point is that NTR's diversified business model (potash + retail = ~66% of EBITDA) provides meaningful insulation from the nitrogen-specific Iran war risk. A peace deal would hurt, but it's not a thesis-breaker at current valuation levels.</div>
+
+</div><!-- /tab-scenarios -->
+
+<!-- ═══════════════════════════════════ JAVASCRIPT ═══════════════════════════════════ -->
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
